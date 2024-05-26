@@ -1,0 +1,169 @@
+{% load static %}
+
+
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+   
+<!-- Mirrored from themepure.net/template/Sopmax/Sopmax/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 Feb 2022 17:21:09 GMT -->
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Sopmax</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+   </head>
+   <body>
+
+    
+
+
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+    <div class="preloader">
+        <svg class="cart" role="img" aria-label="Shopping cart line animation" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+                <g class="cart__track" stroke="hsla(0,10%,10%,0.1)">
+                    <polyline points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" />
+                    <circle cx="43" cy="111" r="13" />
+                    <circle cx="102" cy="111" r="13" />
+                </g>
+                <g class="cart__lines" stroke="currentColor">
+                    <polyline class="cart__top" points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" stroke-dasharray="338 338" stroke-dashoffset="-338" />
+                    <g class="cart__wheel1" transform="rotate(-90,43,111)">
+                        <circle class="cart__wheel-stroke" cx="43" cy="111" r="13" stroke-dasharray="81.68 81.68" stroke-dashoffset="81.68" />
+                    </g>
+                    <g class="cart__wheel2" transform="rotate(90,102,111)">
+                        <circle class="cart__wheel-stroke" cx="102" cy="111" r="13" stroke-dasharray="81.68 81.68" stroke-dashoffset="81.68" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <div class="preloader__text">
+            <p class="preloader__msg">Bringing you the goods…</p>
+            <p class="preloader__msg preloader__msg--last">This is taking long. Something’s wrong.</p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!-- preloader end -->
+
+    <!-- back to top start -->
+    <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+    </div>
+      <!-- back to top end -->
+      
+      
+
+
+{% include "include/header.html" %}
+
+
+
+
+
+ 
+
+   <!-- offcanvas area start -->
+   <div class="offcanvas__area">
+    <div class="offcanvas__wrapper">
+    <div class="offcanvas__close">
+        <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+            <i class="fal fa-times"></i>
+        </button>
+    </div>
+    <div class="offcanvas__content">
+        <div class="offcanvas__logo mb-40">
+            <a href="index.html">
+            <img src="{% static 'assets/img/logo/logo.png' %}" alt="logo">
+            </a>
+        </div>
+        <div class="offcanvas__search mb-25">
+            <form action="#">
+                <input type="text" placeholder="What are you searching for?">
+                <button type="submit" ><i class="far fa-search"></i></button>
+            </form>
+        </div>
+        <div class="mobile-menu fix"></div>
+        <div class="offcanvas__action">
+
+        </div>
+    </div>
+    </div>
+</div>
+<!-- offcanvas area end -->      
+<div class="body-overlay"></div>
+<!-- offcanvas area end -->
+
+
+
+<main>
+{% block content %}
+
+{% endblock content %}
+</main>
+
+
+
+
+
+{% include "include/footer.html" %}
+
+
+
+
+
+
+
+
+        
+          <!-- JS here -->
+          <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>    
+          <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+          <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+          <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+          <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+          <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+          <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+          <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+          <script src="{% static 'assets/js/parallax.js' %}"></script>
+          <script src="{% static 'assets/js/backtotop.js' %}"></script>
+          <script src="{% static 'assets/js/nice-select.js' %}"></script>
+          <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+          <script src="{% static 'assets/js/counterup.js' %}"></script>
+          <script src="{% static 'assets/js/wow.js' %}"></script>
+          <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+          <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+          <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+          <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+       </body>
+    
+    <!-- Mirrored from themepure.net/template/Sopmax/Sopmax/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 Feb 2022 17:21:38 GMT -->
+    </html>
