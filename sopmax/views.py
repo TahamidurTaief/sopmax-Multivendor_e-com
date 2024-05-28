@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from app.models import *
 
 
@@ -6,6 +6,9 @@ from app.models import *
 # Create your views here.
 def base(request):
     return render(request, 'base.html')
+
+def error404(request):
+    return render(request, 'error/404.html')
 
 
 def Home(request):
@@ -34,7 +37,13 @@ def Home(request):
 
 
 def ProductDetail(request, slug):
-    product = Product.objects.get(slug=slug)
+    product = Product.objects.filter(slug=slug)
+
+    if product.exists():
+        product = Product.objects.get(slug=slug)
+    else:
+        return redirect('404')
+    
 
     context = {
         'product': product

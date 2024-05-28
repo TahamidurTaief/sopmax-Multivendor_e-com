@@ -8,6 +8,10 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+
+    # ERROR URL
+    path('404', views.error404, name='404'),
+
     # path('admin/', include('admin_soft.urls')),
     path('admin/', admin.site.urls),
     path('base', views.base, name='base'),

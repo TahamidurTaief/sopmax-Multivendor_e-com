@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load cal_productprice %}
 {% load static %}
 
 
@@ -174,13 +175,13 @@
                                         <span>(01 review)</span>
                                     </div> {% endcomment %}
                                     <div class="price mb-10">
-                                        <span>&#x9F3;{{i.price}}</span>
+                                        <span>&#x9F3;{% call_sellprice i.price i.discount %}</span>&nbsp;&nbsp;<del>{{i.price}}</del>
                                     </div>
                                     <div class="progress mb-5">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {% progress_bar i.quantity i.availability %}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <div class="progress-rate">
-                                        <span>Sold:312/1225</span>
+                                        <span>Sold: {{i.availability}}/{{i.quantity}}</span>
                                     </div>
                                 </div>
                                 <div class="product__add-cart text-center">
