@@ -7082,3 +7082,63 @@ p.checkout-coupon input[type=text]::placeholder {
     margin: 20px 0;
     display: inline-block;}
 	.contant_box_404{ margin-top:-50px;}
+
+
+
+
+
+  /* home page BANNER IMAGE SLIDER */
+
+  
+
+  @keyframes fade{
+    from{
+      opacity:0.4;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  
+  
+  
+  #slider{
+    margin:0 auto;
+    width:100%;
+    overflow:hidden;
+  }
+  
+  .slides{
+    overflow:hidden;
+    animation-name:fade;
+    animation-duration:1s;
+    display:none;
+  }
+  
+  img{
+    width:100%;
+  }
+  
+  #dot{
+    margin:0 auto;
+    text-align:center;
+  }
+  .dot{
+    display:inline-block;
+    border-radius:50%;
+    background:#d3d3d3;
+    padding:8px;
+    margin:10px 5px;
+  }
+  
+  /* .active{
+    background:red;
+  } */
+  
+  @media (max-width:567px){
+    #slider{
+      width:100%;
+  
+    }
+  }
+  

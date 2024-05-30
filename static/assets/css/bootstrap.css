@@ -5324,9 +5324,9 @@ fieldset:disabled .btn {
 }
 
 .alert-danger {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7
+    color: white;
+    background-color: 	#f42a41;
+    border-color: white;
 }
 
 .alert-danger .alert-link {

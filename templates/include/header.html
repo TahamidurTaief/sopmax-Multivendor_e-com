@@ -10,33 +10,25 @@
             <div class="header-inner">
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-7">
-                        <div class="header-inner-start">
-                            <div class="header__currency border-right">
-                                <div class="s-name">
-                                    <span>Language: </span>
-                                </div>
-                                <select>
-                                    <option>English</option>
-                                    <option>Deutsch</option>
-                                    <option>Français</option>
-                                    <option>Espanol</option>
-                                </select>
-                            </div>
-                            <div class="header__lang border-right">
-                                <div class="s-name">
-                                    <span>Currency: </span>
-                                </div>
-                                <select>
-                                    <option> USD</option>
-                                    <option>EUR</option>
-                                    <option>INR</option>
-                                    <option>BDT</option>
-                                    <option>BGD</option>
-                                </select>
-                            </div>
-                            <div class="support d-none d-sm-block">
-                                <p>Need Help? <a href="tel:+001123456789">+001 123 456 789</a></p>
-                            </div>
+                        <div class="header-inner-start pt-2">
+                            {% if user.is_authenticated %}
+                                <p>
+                                    Welome,
+                                    {% if user.first_name == "" or user.first_name == None %}
+                                        {{user.email}} | <b>{{user.username}}</b>
+
+                                    {% else %}
+                                        {{user.first_name}} {{user.last_name}}
+                                    {% endif %}
+                                </p>
+
+                            {% else %}
+                            <p>You are using as a <st   rong>Guest</strong></p>
+                            {% endif %}
+
+
+                            
+
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-5 d-none d-lg-block">
@@ -62,7 +54,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
                         <div class="header__info">
                             <div class="logo">
-                                <a href="index.html" class="logo-image"><img src="{% static 'assets/img/logo/logo.png' %}" alt="logo"></a>
+                                <a href="{% url 'home' %}" class="logo-image"><img src="{% static 'assets/img/logo/logo.png' %}" alt="logo"></a>
                             </div>
                         </div>
                     </div>
@@ -94,14 +86,30 @@
                     </div>
                     <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
                         <div class="header-action">
-                            <div class="block-userlink">
-                                <a class="icon-link" href="my-account.html">
-                                <i class="flaticon-user"></i>
-                                <span class="text">
-                                <span class="sub">Login </span>
-                                My Account </span>
-                                </a>
-                            </div>
+                            {% if user.is_authenticated %}
+            <div class="block-userlink">
+                <form id="logout-form" action="{% url 'logout' %}" method="post" >
+                    {% csrf_token %}
+                    <button type="submit" class="icon-link" style="background: none; border: none; cursor: pointer;">
+                        <i class="flaticon-user"></i>
+                        <span class="text">
+                            <span class="sub">Logout</span>
+                            My Account
+                        </span>
+                    </button>
+                </form>
+            </div>
+        {% else %}
+            <div class="block-userlink">
+                <a class="icon-link" href="{% url 'login' %}">
+                    <i class="flaticon-user"></i>
+                    <span class="text">
+                        <span class="sub">Login</span>
+                        My Account
+                    </span>
+                </a>
+            </div>
+        {% endif %}
                             <div class="block-wishlist action">
                                 <a class="icon-link" href="wishlist.html">
                                 <i class="flaticon-heart"></i>
@@ -364,11 +372,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-9">
-                    <div class="shopeing-text text-sm-end">
-                        <p>Spend $120 more and get free shipping!</p>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
