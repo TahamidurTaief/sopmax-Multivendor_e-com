@@ -7110,8 +7110,8 @@ p.checkout-coupon input[type=text]::placeholder {
   
   .slides{
     overflow:hidden;
-    animation-name:fade;
-    animation-duration:1s;
+    animation-name:slide;
+    animation-duration:3s;
     display:none;
   }
   

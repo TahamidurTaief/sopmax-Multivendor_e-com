@@ -18,6 +18,7 @@ urlpatterns = [
 
     # HOME
     path('', views.Home, name='home'),
+    path('about', views.About, name='about-us'),
 
     # PRODUCTS
     path("product/<slug:slug>", views.ProductDetail, name='product_detail'),

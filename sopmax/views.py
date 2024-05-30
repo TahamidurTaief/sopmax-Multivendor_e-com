@@ -110,3 +110,6 @@ def custom_logout(request):
 
 
 
+
+def About(request):
+    return render(request, 'main/about.html')
