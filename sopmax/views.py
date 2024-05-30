@@ -28,6 +28,7 @@ def Home(request):
     cat = Category.objects.all()
     top_deals_product = Product.objects.filter(section__name='Top Deals Of The Day')
 
+
     
 
     context = {
@@ -36,7 +37,7 @@ def Home(request):
         'main_cat': main_cat,
         'sub_cat': sub_cat,
         'cat': cat,
-        'top_deals_product': top_deals_product
+        'top_deals_product': top_deals_product,
     }
     
     return render(request, 'main/home.html', context)
@@ -113,3 +114,18 @@ def custom_logout(request):
 
 def About(request):
     return render(request, 'main/about.html')
+
+def Contact(request):
+    return render(request, 'main/contact.html')
+
+
+def Products(request):
+    category = Category.objects.all()
+    product = Product.objects.all()
+
+    context = {
+        'category': category,
+        'product': product,
+    }
+
+    return render(request, 'product/product.html', context)

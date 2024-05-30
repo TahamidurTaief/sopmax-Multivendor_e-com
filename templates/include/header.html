@@ -226,11 +226,11 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href="index.html" class="active">Home <i class="far fa-angle-down"></i></a>
+                                    <a href="{% url 'home' %}" class="active">Home <i class="far fa-angle-down"></i></a>
                                     <ul class="megamenu-1">
-                                        <li><a href="index.html">Home Pages</a>
+                                        <li><a href="{% url 'home' %}">Home Pages</a>
                                             <ul class="mega-item">
-                                                <li><a href="index.html" class="active">Home One</a></li>
+                                                <li><a href="{% url 'home' %}" class="active">Home One</a></li>
                                                 <li><a href="index-2.html">Home Two</a></li>
                                                 <li><a href="index-3.html">Home Three</a></li>
                                                 <li><a href="product-details.html">Shop 3 Column</a></li>
@@ -274,8 +274,8 @@
                                     </ul>
                                 </li>
                                 <li><a href="{% url 'about-us' %}">About Us</a></li>
-                                <li><a href="about.html">Contact Us</a></li>
-                                <li><a href="about.html">Product</a></li>
+                                <li><a href="{% url 'contact-us' %}">Contact Us</a></li>
+                                <li><a href="{% url 'product' %}">Product</a></li>
 
                                 <li><a href="blog.html">My Orders <i class="far fa-angle-down"></i></a>
                                     <ul class="submenu">

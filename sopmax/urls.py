@@ -18,7 +18,9 @@ urlpatterns = [
 
     # HOME
     path('', views.Home, name='home'),
-    path('about', views.About, name='about-us'),
+    path('about/', views.About, name='about-us'),
+    path('contact/', views.Contact, name='contact-us'),
+    path('product/', views.Products, name='product'),
 
     # PRODUCTS
     path("product/<slug:slug>", views.ProductDetail, name='product_detail'),

@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="product__content">
-                                    <h6><a href="product-details.html">{{i.name | slice:":50"}}...</a></h6>
+                                    <h6><a href="{{i.get_absolute_url}}">{{i.name | slice:":50"}}...</a></h6>
                                     {% comment %} <div class="rating mb-5">
                                         <ul>
                                             <li><a href="#"><i class="fal fa-star"></i></a></li>
