@@ -1,8 +1,12 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from app.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.template.loader import render_to_string, get_template
+from django.db.models import Max, Min
+
 
 
 
@@ -123,9 +127,40 @@ def Products(request):
     category = Category.objects.all()
     product = Product.objects.all()
 
+    min_price = Product.objects.all().aggregate(Min('price'))
+    max_price = Product.objects.all().aggregate(Max('price'))
+
+    FilterPrice = request.GET.get('FilterPrice')
+    if FilterPrice:
+        Int_FilterPrice = int(FilterPrice)
+        product = Product.objects.filter(price__lte = Int_FilterPrice)
+    else:
+        product = Product.objects.all()
+
     context = {
         'category': category,
         'product': product,
+        'min_price': min_price,
+        'max_price': max_price,
+        'FilterPrice': FilterPrice,
     }
 
     return render(request, 'product/product.html', context)
+
+
+def filter_data(request):
+    categories = request.GET.getlist('category[]')
+    brands = request.GET.getlist('brand[]')
+
+    allProducts = Product.objects.all().order_by('-id').distinct()
+    if len(categories) > 0:
+        allProducts = allProducts.filter(Categories__id__in=categories).distinct()
+
+    if len(brands) > 0:
+        allProducts = allProducts.filter(Brand__id__in=brands).distinct()
+
+
+    t = render_to_string('ajax/product.html', {'product': allProducts})
+    print(t)
+
+    return JsonResponse({'data': t})

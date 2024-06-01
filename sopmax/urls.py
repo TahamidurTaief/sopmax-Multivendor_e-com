@@ -21,6 +21,7 @@ urlpatterns = [
     path('about/', views.About, name='about-us'),
     path('contact/', views.Contact, name='contact-us'),
     path('product/', views.Products, name='product'),
+    path('product/filter-data',views.filter_data,name="filter-data"),
 
     # PRODUCTS
     path("product/<slug:slug>", views.ProductDetail, name='product_detail'),
