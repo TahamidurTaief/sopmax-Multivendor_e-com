@@ -656,3 +656,14 @@ function changeSlide(){
 }
 
 changeSlide();
+
+
+
+
+
+
+
+// MESSAGE AREA
+$('.button').bind('click', function() {
+	$('.modal').addClass('hide');
+});

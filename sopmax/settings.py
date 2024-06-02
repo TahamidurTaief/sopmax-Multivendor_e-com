@@ -125,7 +125,7 @@ USE_TZ = True
 
 
 
-from ckeditor.configs import DEFAULT_CONFIG
+from ckeditor.configs import DEFAULT_CONFIG  # type: ignore
 
 CKEDITOR_UPLOAD_PATH = "Media/uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"

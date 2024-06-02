@@ -242,13 +242,39 @@ def cart_clear(request):
     return redirect("cart_detail")
 
 
-@login_required(login_url="/acounts/login")
+
+
+@login_required(login_url="/accounts/login")
 def cart_detail(request):
-    # cart = request.session.get('cart')
-    # product = Product.objects.all()
+    cart = request.session.get('cart', {})
+    
+    coupon = None
+    valid_coupon = False
+    invalid_coupon = False
+    coupon_discount = 0
+    
+    # Convert price to integer and calculate total amount
+    cart_total_amount = sum(float(item['price']) * item['quantity'] for item in cart.values())
+    
+    if request.method == "GET":
+        coupon_code = request.GET.get('coupon_code')
+        
+        if coupon_code:
+            try:
+                coupon = CuponCode.objects.get(code=coupon_code)
+                valid_coupon = True
+                coupon_discount = coupon.discount
+                messages.success(request, 'Coupon code applied successfully.')
+            except CuponCode.DoesNotExist:
+                invalid_coupon = True
+                messages.error(request, 'Invalid coupon code.')
 
-    # context = {
-    #     'product': product,
-    # }
+    context = {
+        'coupon': coupon,
+        'valid_coupon': valid_coupon,
+        'invalid_coupon': invalid_coupon,
+        'coupon_discount': coupon_discount,
+        'cart_total_amount': cart_total_amount,
+    }
 
-    return render(request, 'cart/cart.html')
+    return render(request, 'cart/cart.html', context)

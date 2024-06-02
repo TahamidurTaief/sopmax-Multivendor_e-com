@@ -153,6 +153,16 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 
 pre_save.connect(pre_save_post_receiver, Product)
 
+
+
+
+class CuponCode(models.Model):
+    code = models.CharField(max_length=100, unique=True)
+    discount = models.DecimalField(max_digits=5, decimal_places=2)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.code
     
 
 class Product_Image(models.Model):

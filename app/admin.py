@@ -28,3 +28,10 @@ admin.site.register(Additional_Information)
 admin.site.register(Color)
 admin.site.register(Product_Size)
 admin.site.register(Brand)
+
+
+@admin.register(CuponCode)
+class CuponCodeAdmin(admin.ModelAdmin):
+    list_display = ('code', 'discount','active')
+    list_filter = ('active', 'discount')
+    search_fields = ('code',)

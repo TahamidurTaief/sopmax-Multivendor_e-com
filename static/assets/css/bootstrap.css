@@ -5293,9 +5293,9 @@ fieldset:disabled .btn {
 }
 
 .alert-success {
-    color: #0f5132;
-    background-color: #d1e7dd;
-    border-color: #badbcc
+    color: white;
+    background-color: #006a4e;
+    border-color: yellow
 }
 
 .alert-success .alert-link {
@@ -5325,7 +5325,7 @@ fieldset:disabled .btn {
 .alert-danger {
     color: white;
     background-color: 	#f42a41;
-    border-color: white;
+    border-color: yellow;
 }
 
 .alert-danger .alert-link {

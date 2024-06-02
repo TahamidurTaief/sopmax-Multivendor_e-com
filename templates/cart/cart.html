@@ -75,7 +75,7 @@
                                         </div>
 
                                       </td>
-                                      <td class="product-subtotal"><span class="amount">&#2547; {{ value.price|multiply:value.quantity }}</span></td>
+                                      <td class="product-subtotal" ><span class="amount">&#2547; {{ value.price|multiply:value.quantity }}</span></td>
                                       <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
                                    </tr>
                                    {% endfor %}
@@ -86,11 +86,22 @@
                        <div class="row">
                           <div class="col-12">
                                 <div class="coupon-all">
-                                   <div class="coupon">
-                                      <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
-                                      <button class="tp-btn-h1" name="apply_coupon" type="submit">Apply
-                                            coupon</button>
-                                   </div>
+
+                                    <form method="get">     
+                                        <div class="coupon">
+                                            {% if valid_coupon %}
+                                                {% include "include/messages.html" %}
+                                                
+                                            {% else %}
+                                                {% include "include/messages.html" %}
+                                            {% endif %}
+
+                                            <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
+                                            <button class="tp-btn-h1" name="apply_coupon" type="submit">Apply
+                                                  coupon</button>
+                                         </div>
+                                    </form>
+                                   
                                    <div class="coupon2">
                                       <a href="{% url 'cart_clear' %}" class="tp-btn-h1" name="update_cart" type="submit">Clear cart</a>
                                    </div>
@@ -102,17 +113,21 @@
                                 <div class="cart-page-total">
                                    <h2>Cart totals</h2>
                                    <ul class="mb-20">
-                                      <li>Subtotal <span>&#2547; {{cart_total_amount}}</span></li>
-
-                                      {% if cart_total_amount > 5000 %}
-                                      <li>Delevary Charge <span>Free Shipping</span></li>
-                                      <li>Total <span>&#2547; {{cart_total_amount}}</span></li>
-                                        {% else %}
-                                      <li>Delevary Charge <span>&#2547; 150</span></li>
-                                      <li>Total <span>&#2547; {{cart_total_amount|add:150}}</span></li>
-                                      {% endif %}
-
-                                   </ul>
+                                    <li>Subtotal <span>&#2547; {{ cart_total_amount }}</span></li>
+                
+                                    {% if valid_coupon %}
+                                    <li>Coupon Code Applied <span>&#2547; {{ coupon.discount }}</span></li>
+                                    {% endif %}
+                
+                                    {% if cart_total_amount > 5000 %}
+                                    <li>Delevary Charge <span>Free Shipping</span></li>
+                                    <li id="total"><b>Total </b><span><b>&#2547; {{ cart_total_amount }}</b></span></li>
+                                    {% else %}
+                                    <li>Delevary Charge <span>&#2547; 150</span></li>
+                                    <li id="total"><b>Total </b><span><b>&#2547; {{ cart_total_amount|add:150 }}</b></span></li>
+                                    {% endif %}
+                                    
+                                </ul>
                                    <a class="tp-btn-h1" href="checkout.html">Proceed to checkout</a>
                                 </div>
                           </div>
@@ -175,6 +190,26 @@
     <!-- cta-area-end -->
 
 </main>
+
+
+<script>
+    var item_amounts = {{ cart_total_amount }};
+    var total = item_amounts;
+    var coupon_discount = {{ coupon.discount }};
+    console.log(coupon_discount);
+    var cal_discount;
+
+    if (coupon_discount) {
+        if (item_amounts < 5000) {
+            cal_discount = item_amounts - coupon_discount + 150;
+            document.getElementById("total").innerHTML = "<b>Total </b><span><b>&#2547; " + cal_discount.toFixed(2) + "</b></span>";
+        } else {
+            cal_discount =  item_amounts - coupon_discount;
+            document.getElementById("total").innerHTML = "<b>Total </b><span><b>&#2547; " + cal_discount.toFixed(2) + "</b></span>";
+        }
+    }
+</script>
+
 
 
 {% endblock content %}
