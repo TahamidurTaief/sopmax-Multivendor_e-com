@@ -4,11 +4,10 @@ from app.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.template.loader import render_to_string, get_template
-from django.db.models import Max, Min
-
-
-
+from django.template.loader import render_to_string
+from django.db.models import Max, Min, Sum
+from django.contrib.auth.decorators import login_required
+from cart.cart import Cart #type: ignore
 
 # Create your views here.
 def base(request):
@@ -24,7 +23,7 @@ def Account(request):
 
 def Home(request):
     sliders = Slider.objects.all().order_by('-id')[0:5]
-    banner_areas = banner_area.objects.all().order_by('-id')[0:3]
+    banner_areas = Banner_Area.objects.all().order_by('-id')[0:3]
 
 
     main_cat = Main_Category.objects.all()
@@ -126,23 +125,58 @@ def Contact(request):
 def Products(request):
     category = Category.objects.all()
     product = Product.objects.all()
+    color = Color.objects.all()
+    sizes = Product_Size.objects.all()
+    brand = Brand.objects.all()
 
+
+   # FILTER WITH CATEGORY
+    CategoryID = request.GET.get('categoryID')
+    ColorID = request.GET.get('colorID')
+    FilterPrice = request.GET.get('FilterPrice')
+    size_filters = request.GET.getlist('size')
+    brandID = request.GET.get('brandID')
+    
+    
+
+
+    # FILTER WITH PRICE RANGE
     min_price = Product.objects.all().aggregate(Min('price'))
     max_price = Product.objects.all().aggregate(Max('price'))
 
-    FilterPrice = request.GET.get('FilterPrice')
+    
     if FilterPrice:
         Int_FilterPrice = int(FilterPrice)
         product = Product.objects.filter(price__lte = Int_FilterPrice)
+    
+    elif CategoryID:
+        product = Product.objects.filter(category__id=CategoryID)
+    
+    elif ColorID:
+        product = Product.objects.filter(color__id=ColorID)
+    
+    elif size_filters:
+        size_ids = [int(size) for size in size_filters]
+        product = Product.objects.filter(size__id__in=size_ids)
+    
+    elif brandID:
+        product = Product.objects.filter(brand__id=brandID)
+    
     else:
         product = Product.objects.all()
+
+    
+ 
 
     context = {
         'category': category,
         'product': product,
+        'color': color,
         'min_price': min_price,
         'max_price': max_price,
         'FilterPrice': FilterPrice,
+        'sizes': sizes,
+        'brand': brand,
     }
 
     return render(request, 'product/product.html', context)
@@ -164,3 +198,57 @@ def filter_data(request):
     print(t)
 
     return JsonResponse({'data': t})
+
+
+
+
+
+@login_required(login_url="/acounts/login")
+def cart_add(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.add(product=product)
+    return redirect("home")
+
+
+@login_required(login_url="/acounts/login")
+def item_clear(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.remove(product)
+    return redirect("cart_detail")
+
+
+@login_required(login_url="/acounts/login")
+def item_increment(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.add(product=product)
+    return redirect("cart_detail")
+
+
+@login_required(login_url="/acounts/login")
+def item_decrement(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.decrement(product=product)
+    return redirect("cart_detail")
+
+
+@login_required(login_url="/acounts/login")
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect("cart_detail")
+
+
+@login_required(login_url="/acounts/login")
+def cart_detail(request):
+    # cart = request.session.get('cart')
+    # product = Product.objects.all()
+
+    # context = {
+    #     'product': product,
+    # }
+
+    return render(request, 'cart/cart.html')

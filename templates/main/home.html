@@ -154,7 +154,7 @@
                                 <div class="product__thumb fix">
                                     <div class="product-image w-img">
                                         <a href="{{i.get_absolute_url}}">
-                                            <img src="{{i.featured_image}}" alt="product" style="height:250px; width:auto;">
+                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; max-width:120px;">
                                         </a>
                                     </div>
                                     <div class="product__offer">
@@ -175,8 +175,8 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="product__content">
-                                    <h6><a href="{{i.get_absolute_url}}">{{i.name | slice:":50"}}...</a></h6>
+                                <div class="product__content pt-2">
+                                    <h6><a href="{{i.get_absolute_url}}">{{i.name | slice:":30"}}...</a></h6>
                                     {% comment %} <div class="rating mb-5">
                                         <ul>
                                             <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -198,9 +198,9 @@
                                     </div>
                                 </div>
                                 <div class="product__add-cart text-center">
-                                    <button type="button" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+                                    <a href="{% url 'cart_add' i.id %}" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
                                     Add to Cart
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             {% endfor %}

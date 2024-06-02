@@ -11,13 +11,13 @@ class Additional_Informations(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [Product_Images, Additional_Informations]
-    list_display = ['name', 'price', 'quantity', 'category', 'section']
-    list_editable = ['price', 'quantity', 'category', 'section']
+    list_display = ['name', 'price', 'quantity', 'category','color', 'section']
+    list_editable = ['price', 'quantity', 'category', 'color', 'section']
 
 
 
 admin.site.register(Slider)
-admin.site.register(banner_area)
+admin.site.register(Banner_Area)
 admin.site.register(Main_Category)
 admin.site.register(Category)
 admin.site.register(Sub_Category)
@@ -25,3 +25,6 @@ admin.site.register(Section)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Product_Image)
 admin.site.register(Additional_Information)
+admin.site.register(Color)
+admin.site.register(Product_Size)
+admin.site.register(Brand)

@@ -33,6 +33,16 @@ urlpatterns = [
     path('account/login', views.Login, name='handlelogin'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/logout/', views.custom_logout, name='logout'),
+
+
+
+    # CART
+    path('cart/add/<uuid:id>/', views.cart_add, name='cart_add'),
+    path('cart/item_clear/<uuid:id>/', views.item_clear, name='item_clear'),
+    path('cart/item_increment/<uuid:id>/', views.item_increment, name='item_increment'),
+    path('cart/item_decrement/<uuid:id>/', views.item_decrement, name='item_decrement'),
+    path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
+    path('cart/cart-detail/',views.cart_detail,name='cart_detail'),
     
 
 

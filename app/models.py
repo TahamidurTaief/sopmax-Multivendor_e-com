@@ -1,6 +1,6 @@
 from django.db import models
 import uuid 
-from ckeditor.fields import RichTextField
+from ckeditor.fields import RichTextField # type: ignore
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 
@@ -18,7 +18,7 @@ class Slider(models.Model):
     #     return self.link
 
 
-class banner_area(models.Model):
+class Banner_Area(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to='banner_images')
     discount_deal = models.CharField(max_length=100, default="", null=True, blank=True)
@@ -27,6 +27,37 @@ class banner_area(models.Model):
 
     def __str__(self):
         return self.quote
+    
+
+
+class Brand(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100, default="", null="", blank="") 
+    image = models.ImageField(upload_to='brand_images')
+
+    def __str__(self):
+        return self.name
+    
+
+
+class Color(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100, default="", null="", blank="") 
+    code = models.CharField(max_length=10, default="", null="", blank="") 
+
+    def __str__(self):
+        return self.name
+
+
+
+
+class Product_Size(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100, default="", null="", blank="") 
+
+    def __str__(self):
+        return self.name
+
 
 
 
@@ -72,15 +103,20 @@ class Section(models.Model):
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, default="", null="", blank="")
-    price = models.IntegerField(default=0, null=True, blank=True)
-    quantity = models.IntegerField(default=0, null=True, blank=True)
+    model_name = models.CharField(max_length=100, default="", null="", blank="")
     Product_information = RichTextField(null=True, blank=True)
     Description = RichTextField(null=True, blank=True)
-    model_name = models.CharField(max_length=100, default="", null="", blank="")
+    quantity = models.IntegerField(default=0, null=True, blank=True)
     availability = models.IntegerField(default=0, null=True, blank=True)
+    price = models.IntegerField(default=0, null=True, blank=True)
+    # delevary_charge = models.IntegerField(default=150, null=True, blank=True)
+    discount_price = models.IntegerField(default=0, null=True, blank=True)
     discount = models.IntegerField(default=0, null=True, blank=True)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True, default="")
+    size = models.ForeignKey(Product_Size, on_delete=models.CASCADE, null=True, blank=True, default="")
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True, default="")
     tags = models.CharField(max_length=100, default="", null="", blank="")
     featured_image = models.CharField(max_length=200, default="", null="", blank="")
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
