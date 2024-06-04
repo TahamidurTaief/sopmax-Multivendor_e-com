@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_tag %}
+{% load cal_productprice %}
+
+
+{% block content %}
+
+    <!-- page-banner-area-start -->
+    <div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-banner-content text-center">
+                        <h4 class="breadcrumb-title">Checkout</h4>
+                        <div class="breadcrumb-two">
+                            <nav>
+                               <nav class="breadcrumb-trail breadcrumbs">
+                                  <ul class="breadcrumb-menu">
+                                     <li class="breadcrumb-trail">
+                                        <a href="index.html"><span>Home</span></a>
+                                     </li>
+                                     <li class="trail-item">
+                                        <span>Checkout</span>
+                                     </li>
+                                  </ul>
+                               </nav> 
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page-banner-area-end -->
+
+    <!-- coupon-area-start -->
+
+
+     <!-- coupon-area-start -->
+     <section class="coupon-area pt-120 pb-30">
+        <div class="container">
+        <div class="row">
+        {% comment %} <div class="col-md-6">
+            <div class="coupon-accordion">
+                    <!-- ACCORDION START -->
+                    <h3>Have a coupon? <span id="showlogin">Click here to submit your coupon</span></h3>
+                    <div id="checkout-login" class="coupon-content">
+                    <div class="coupon-info">
+                        <p class="coupon-text">Enter a valid coupon for discount.</p>
+                                <form method="get">   
+                                    {% csrf_token %}      
+                                    <div class="coupon">
+                                        {% if valid_coupon %}
+                                            {% include "include/messages.html" %}
+                                        {% elif invalid_coupon %}
+                                            {% include "include/messages.html" %}
+                                        {% endif %}
+                                        <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
+                                        <button class="tp-btn-h1" name="apply_coupon">Apply coupon</button>
+                                    </div>
+                                </form>
+                    </div>
+                    </div>
+                    <!-- ACCORDION END -->
+            </div>
+        </div> {% endcomment %}
+        
+        </div>
+    </div>
+    </section>
+    <!-- coupon-area-end -->
+
+
+    
+
+    <!-- checkout-area-start -->
+    <section class="checkout-area pb-85 pt-13">
+        <div class="container">
+            <form action="{% url 'order' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkbox-form">
+                            <h3>Billing Details</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Country <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="country" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>First Name <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="first_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Last Name <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="last_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Company Name</label>
+                                        <input type="text" placeholder="" name="company_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Address <span class="required">*</span></label>
+                                        <input type="text" placeholder="Street address" name="address" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <input type="text" placeholder="Apartment, suite, unit etc. (optional)" name="address_2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Town / City <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="town_city" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>State / County <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="state" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Postcode / Zip <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="postcode" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Email Address <span class="required">*</span></label>
+                                        <input type="email" placeholder="" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Phone <span class="required">*</span></label>
+                                        <input type="text" placeholder="" name="phone" required>
+                                    </div>
+                                </div>
+
+                                <label style="color:black; font-weight:300;"><span style="color:red; font-weight:500;">Note:</span> Please read left side payment document first.</label>
+                                <div class="col-md-6 pt-2">
+                                    <div class="checkout-form-list">
+                                        
+                                        <label>Tranjection Number <span class="required">*</span></label>
+                                        <input type="text" placeholder="Your Tranjection Number"  name="tranjection_number"  required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pt-2">
+                                    <div class="checkout-form-list">
+                                        <label>Tranjection ID <span class="required">*</span></label>
+                                        <input type="text" placeholder="Valid Tranjection Code" name="tranjection_id" required >
+                                    </div>
+                                </div>
+
+                                <label style="color:black; font-weight:300;"><span style="color:red; font-weight:500;">Note:</span> Copy Product info from <b>"Your Order"</b>. Then Paste it here.</label>
+                                <div class="col-md-12 pt-2">
+                                    <div class="checkout-form-list">
+                                        
+                                        <label>Product Info <span class="required">*</span></label>
+                                        <input type="text" placeholder="Paste here your copied info."  name="product_name" required >
+                                    </div>
+                                </div>
+
+
+                                <div class="order-button-payment mt-20">
+                                    <button type="submit" class="tp-btn-h1">Place order</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </form>
+                    <div class="col-lg-6">
+                        <div class="your-order mb-30 ">
+                            <h3>Your order</h3>
+                            <div class="your-order-table table-responsive">
+                                <table>
+                                    <thead>
+                                        {% for key, value in request.session.cart.items %}
+                                        <tr>                                           
+                                                <b style="color:black; font-weight:400;">@ </b>{{ value.name }} | {{ value.price }} | {{ value.quantity }}<br>
+                                            {% comment %} <td>&#2547; {{ value.price }}</td> {% endcomment %}
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Products Price</th>
+                                            <td>&#2547; {{ cart_total_amount }}</td>
+                                        </tr>
+                                        {% if valid_coupon %}
+                                        <tr class="cart-subtotal">
+                                            
+                                            <th>Coupon Code Applied</th>
+                                            <td><span class="amount">&#2547; {{ coupon.discount }}</span></td>
+                                            <input type="hidden" name="coupon_discount" value="{{ coupon.discount }}TK">
+                                        </tr>
+                                        {% endif %}
+
+                                        {% if cart_total_amount > 5000 %}
+                                            <tr class="shipping">
+                                                <th>Shipping</th>
+                                                <td>Free of cost</td>
+                                                <input type="hidden" name="shipping_cost" value="0">
+                                            </tr>
+
+                                            {% if valid_coupon %}
+                                            <tr class="order-total">
+                                                <th>Order Total</th>
+                                                <td><strong><span class="amount">&#2547; {{ cart_total_amount|subtract:coupon_discount }}</span></strong></td>
+                                                <input type="hidden" name="order_total" value="{{ cart_total_amount|subtract:coupon_discount }} TK">
+                                            </tr>
+                                            {% else %}
+                                            <tr class="order-total">
+                                                <th>Order Total</th>
+                                                <td><strong><span class="amount">&#2547; {{ cart_total_amount }}</span></strong></td>   
+                                                <input type="hidden" name="order_total" value="{{ cart_total_amount }} TK"> 
+                                            </tr>
+                                            {% endif %}
+
+                                        {% else %}
+                                        <tr class="shipping">
+                                            <th>Shipping</th>
+                                            <td>&#2547; 150</td>
+                                            <input type="hidden" name="shipping_cost" value="150">
+                                        </tr>
+                                        {% if valid_coupon %}
+                                            <tr class="order-total">
+                                                <th>Order Total</th>
+                                                <td><strong><span class="amount">&#2547; {{ cart_total_amount|subtract:coupon_discount }}</span></strong></td>
+                                                <input type="hidden" name="order_total" value="{{ cart_total_amount|subtract:coupon_discount }} TK">
+                                            </tr>
+                                            {% else %}
+                                            <tr class="order-total">
+                                                <th>Order Total</th>
+                                                <td><strong><span class="amount">&#2547; {{ cart_total_amount|add:150 }}</span></strong></td>
+                                                <input type="hidden" name="order_total" value="{{ cart_total_amount|add:150 }} TK">    
+                                            </tr>
+                                        {% endif %}
+                                        {% endif %}
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            
+                            <form method="get" class="pt-5">   
+                                {% csrf_token %}      
+                                <div class="coupon">
+                                    {% if valid_coupon %}
+                                        {% include "include/messages.html" %}
+                                    {% elif invalid_coupon %}
+                                        {% include "include/messages.html" %}
+                                    {% endif %}
+                                    <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
+                                    <button class="tp-btn-h1" name="apply_coupon">Apply coupon</button>
+                                </div>
+                            </form>
+
+
+                            <div class="payment-method">
+                                <div class="accordion" id="checkoutAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="checkoutOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bankOne" aria-expanded="true" aria-controls="bankOne">
+                                        bKash Payment
+                                        </button>
+                                    </h2>
+                                    <div id="bankOne" class="accordion-collapse collapse show" aria-labelledby="checkoutOne" data-bs-parent="#checkoutAccordion">
+                                        <div class="accordion-body">
+                                         <p>Make your payment (Send Money) directly into our Bkash Account. Then share your bKash number and tranjection id (which is sent by bKash in your message or bKash app). Then place your order. <br><br>Our bKash Number: +8801575397472</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="paymentTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payment" aria-expanded="false" aria-controls="payment">
+                                        Nagad Payment
+                                        </button>
+                                    </h2>
+                                    <div id="payment" class="accordion-collapse collapse" aria-labelledby="paymentTwo" data-bs-parent="#checkoutAccordion">
+                                        <div class="accordion-body">
+                                            <p>Make your payment (Send Money) directly into our Nagad Account. Then share your Nagad account number and tranjection id (which is sent by nagad in your message or nagad app). Then place your order. <br><br>Our Nagad Number: +8801575397472</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% comment %} </form> {% endcomment %}
+        </div>
+    </section>
+    <!-- checkout-area-end -->
+
+    
+
+
+
+{% endblock content %}

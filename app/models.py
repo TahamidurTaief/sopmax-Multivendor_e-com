@@ -3,7 +3,7 @@ import uuid
 from ckeditor.fields import RichTextField # type: ignore
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
-
+from django.contrib.auth.models import User
 
 
 
@@ -182,3 +182,62 @@ class Additional_Information(models.Model):
 
     def __str__(self):
         return self.product.name 
+    
+
+
+from django.db import models
+from django.contrib.auth.models import User
+
+class Checkout(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    product_name = models.TextField(default='', null=True, blank=True)
+    first_name = models.CharField(max_length=100, default='', null=True, blank=True)
+    last_name = models.CharField(max_length=100, default='', null=True, blank=True)
+    company_name = models.CharField(max_length=100, blank=True, default='')
+    country = models.CharField(max_length=100, default='', null=True, blank=True)
+    address = models.CharField(max_length=255, default='', null=True, blank=True)
+    address_2 = models.CharField(max_length=255, blank=True, default='')
+    town_city = models.CharField(max_length=100, default='', null=True, blank=True)
+    state = models.CharField(max_length=100, blank=True, default='')
+    postcode = models.CharField(max_length=20, default='', null=True, blank=True)
+    phone = models.CharField(max_length=20, default='', null=True, blank=True)
+    email = models.CharField(max_length=100, default='', null=True, blank=True)
+    tranjection_number = models.CharField(max_length=100, default='', null=True, blank=True)
+    tranjection_id = models.CharField(max_length=100, default='', null=True, blank=True)
+    note = models.TextField(blank=True, default='', null=True)
+    cart_total_amount = models.CharField(max_length=100, default="", null=True, blank=True)
+    coupon_discount_price = models.CharField(max_length=100, default=0, null=True, blank=True)
+    shipping_cost = models.CharField(max_length=10, default="", null=True, blank=True)
+    order_total = models.CharField(max_length=10, default="", null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Checkout for {self.first_name} {self.last_name}"
+
+
+
+class PreOrder(models.Model):
+    user = models.CharField(max_length=100, default='', null=True, blank=True)
+    product_name = models.TextField(default='', null=True, blank=True)
+    first_name = models.CharField(max_length=100, default='', null=True, blank=True)
+    last_name = models.CharField(max_length=100, default='', null=True, blank=True)
+    company_name = models.CharField(max_length=100, blank=True, default='')
+    country = models.CharField(max_length=100, default='', null=True, blank=True)
+    address = models.CharField(max_length=255, default='', null=True, blank=True)
+    address_2 = models.CharField(max_length=255, blank=True, default='')
+    town_city = models.CharField(max_length=100, default='', null=True, blank=True)
+    state = models.CharField(max_length=100, blank=True, default='')
+    postcode = models.CharField(max_length=20, default='', null=True, blank=True)
+    phone = models.CharField(max_length=20, default='', null=True, blank=True)
+    email = models.CharField(max_length=100, default='', null=True, blank=True)
+    tranjection_number = models.CharField(max_length=100, default='', null=True, blank=True)
+    tranjection_id = models.CharField(max_length=100, default='', null=True, blank=True)
+    note = models.TextField(blank=True, default='', null=True)
+    cart_total_amount = models.CharField(max_length=100, default="", null=True, blank=True)
+    coupon_discount_price = models.CharField(max_length=100, default=0, null=True, blank=True)
+    shipping_cost = models.CharField(max_length=10, default="", null=True, blank=True)
+    order_total = models.CharField(max_length=10, default="", null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Checkout for {self.first_name} {self.last_name}"

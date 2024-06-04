@@ -21,3 +21,11 @@ def progress_bar(quantity, availability):
 
     progress_percentage = (availability * 100) / quantity
     return math.floor(progress_percentage)
+
+
+@register.filter(name='subtract')
+def subtract(value, arg):
+    try:
+        return float(value) - float(arg)
+    except (ValueError, TypeError):
+        return value  # Return the original value if conversion fails

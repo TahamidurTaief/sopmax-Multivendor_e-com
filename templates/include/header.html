@@ -1,6 +1,6 @@
 
 {% load static %}
-
+{% load cart_tag %}
 
 
 <!-- header-start -->
@@ -35,9 +35,9 @@
                         <div class="header-inner-end text-md-end">
                             <div class="ovic-menu-wrapper">
                                 <ul>
-                                    <li><a href="about.html">About Us</a></li>
+                                    {% comment %} <li><a href="about.html">About Us</a></li> {% endcomment %}
                                     <li><a href="contact.html">Order Tracking</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    {% comment %} <li><a href="contact.html">Contact Us</a></li> {% endcomment %}
                                     <li><a href="faq.html">FAQs</a></li>
                                 </ul>
                             </div>
@@ -68,17 +68,9 @@
                                 <div class="header__search-cat">
                                     <select>
                                         <option>All Categories</option>
-                                        <option>Best Seller Products</option>
-                                        <option>Top 10 Offers</option>
-                                        <option>New Arrivals</option>
-                                        <option>Phones &amp; Tablets</option>
-                                        <option>Electronics &amp; Digital</option>
-                                        <option>Fashion &amp; Clothings</option>
-                                        <option>Jewelry &amp; Watches</option>
-                                        <option>Health &amp; Beauty</option>
-                                        <option>Sound &amp; Speakers</option>
-                                        <option>TV &amp; Audio</option>
-                                        <option>Computers</option>
+                                        {% for i in main_cat %}
+                                        <option><a>{{i.name}}</a></option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </form>
@@ -122,9 +114,10 @@
                             <div class="block-cart action">
                                 <a class="icon-link" href="{% url 'cart_detail' %}">
                                 <i class="flaticon-shopping-bag"></i>
-                                <span class="count">1</span>
+                                <span class="count">{{ cart_count }}</span>
                                 <span class="text">
                                 <span class="sub">Your Cart:</span>
+                                {{ cart_total_amount }} </span>
                                 </a>
                                 <div class="cart">
                                     <div class="cart__mini">
@@ -132,21 +125,22 @@
                                             <li>
                                               <div class="cart__title">
                                                 <h4>Your Cart</h4>
-                                                <span>(1 Item in Cart)</span>
                                               </div>
                                             </li>
                                             <li>
+
+                                                {% for key,value in request.session.cart.items %}
                                               <div class="cart__item d-flex justify-content-between align-items-center">
                                                 <div class="cart__inner d-flex">
                                                   <div class="cart__thumb">
                                                     <a href="product-details.html">
-                                                      <img src="assets/img/cart/20.jpg" alt="">
+                                                      <img src="{{value.image}}" alt="sopmax" style="height:50px; width:auto;">
                                                     </a>
                                                   </div>
                                                   <div class="cart__details">
-                                                    <h6><a href="product-details.html"> Samsung C49J89: £875, Debenhams Plus  </a></h6>
+                                                    <h6><a href="product-details.html"> {{value.name}}  </a></h6>
                                                     <div class="cart__price">
-                                                      <span>$255.00</span>
+                                                      <span>&#2547; {{value.price}}</span>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -156,14 +150,12 @@
                                               </div>
                                             </li>
                                             <li>
-                                              <div class="cart__sub d-flex justify-content-between align-items-center">
-                                                <h6>Subtotal</h6>
-                                                <span class="cart__sub-total">$255.00</span>
-                                              </div>
+                                              
+                                              {% endfor %}
                                             </li>
                                             <li>
-                                                <a href="cart.html" class="wc-cart mb-10">View cart</a>
-                                                <a href="checkout.html" class="wc-checkout">Checkout</a>
+                                                <a href="{% url 'cart_detail' %}" class="wc-cart mb-10">View cart</a>
+                                                <a href="{% url 'checkout' %}" class="wc-checkout">Checkout</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -188,15 +180,15 @@
 
                                         {% for i in main_cat %}
                                         <li>
-                                            <a href="shop.html">{{i.name}} <i class="far fa-angle-down"></i></a>
+                                            <a href="">{{i.name}} <i class="far fa-angle-down"></i></a>
                                             <ul class="mega-menu">
 
                                                 {% for cat in i.category_set.all %}
-                                                <li><a href="shop.html">{{cat.name}}</a>
+                                                <li><a href="/product/?categoryID={{cat.id}}">{{cat.name}}</a>
                                                     <ul class="mega-item">
 
                                                         {% for subcat in cat.sub_category_set.all %}
-                                                        <li><a href="product-details.html">{{subcat.name}}</a></li>
+                                                        <li><a href="/product/?categoryID={{cat.id}}">{{subcat.name}}</a></li>
                                                         {% endfor %}
                                                     </ul>
                                                 </li>
@@ -225,56 +217,14 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href="{% url 'home' %}" class="active">Home <i class="far fa-angle-down"></i></a>
-                                    <ul class="megamenu-1">
-                                        <li><a href="{% url 'home' %}">Home Pages</a>
-                                            <ul class="mega-item">
-                                                <li><a href="{% url 'home' %}" class="active">Home One</a></li>
-                                                <li><a href="index-2.html">Home Two</a></li>
-                                                <li><a href="index-3.html">Home Three</a></li>
-                                                <li><a href="product-details.html">Shop 3 Column</a></li>
-                                                <li><a href="product-details.html">Shop 4 Column</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop.html">Product Pages</a>
-                                            <ul class="mega-item">
-                                                <li><a href="product-details.html">Product Details</a></li>
-                                                <li><a href="product-details.html">Product V2</a></li>
-                                                <li><a href="product-details.html">Product V3</a></li>
-                                                <li><a href="product-details.html">Varriable Product</a></li>
-                                                <li><a href="product-details.html">External Product</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop.html">Other Pages</a>
-                                            <ul class="mega-item">
-                                                <li><a href="product-details.html">wishlist</a></li>
-                                                <li><a href="product-details.html">Shopping Cart</a></li>
-                                                <li><a href="product-details.html">Checkout</a></li>
-                                                <li><a href="product-details.html">Login</a></li>
-                                                <li><a href="product-details.html">Register</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop.html">Phone &amp; Tablets</a>
-                                            <ul class="mega-item">
-                                                <li><a href="product-details.html">Catagory 1</a></li>
-                                                <li><a href="product-details.html">Catagory 2</a></li>
-                                                <li><a href="product-details.html">Catagory 3</a></li>
-                                                <li><a href="product-details.html">Catagory 4</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop.html">Phone &amp; Tablets</a>
-                                            <ul class="mega-item">
-                                                <li><a href="product-details.html">Catagory 1</a></li>
-                                                <li><a href="product-details.html">Catagory 2</a></li>
-                                                <li><a href="product-details.html">Catagory 3</a></li>
-                                                <li><a href="product-details.html">Catagory 4</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <a href="{% url 'home' %}" class="active">Home</a>
+                                   
                                 </li>
-                                <li><a href="{% url 'about-us' %}">About Us</a></li>
-                                <li><a href="{% url 'contact-us' %}">Contact Us</a></li>
+                                {% comment %} <li><a href="{% url 'about-us' %}">About Us</a></li>
+                                <li><a href="{% url 'contact-us' %}">Contact Us</a></li> {% endcomment %}
                                 <li><a href="{% url 'product' %}">Product</a></li>
+                                <li><a href="{% url 'cart_detail' %}">My Cart</a></li>
+                                <li><a href="{% url 'checkout' %}">Checkout</a></li>
 
                                 <li><a href="blog.html">My Orders <i class="far fa-angle-down"></i></a>
                                     <ul class="submenu">
@@ -282,6 +232,7 @@
                                         <li><a href="blog-details.html">Order Tracking</a></li>
                                     </ul>
                                 </li>
+                                {% comment %} <li><a href="{% url 'logout' %}">logout</a></li> {% endcomment %}
                             </ul>
                         </nav>
                     </div>

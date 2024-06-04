@@ -13,6 +13,11 @@ from cart.cart import Cart #type: ignore
 def base(request):
     return render(request, 'base.html')
 
+
+
+
+
+
 def error404(request):
     return render(request, 'error/404.html')
 
@@ -22,25 +27,73 @@ def Account(request):
 
 
 def Home(request):
+    brand = Brand.objects.all()
+
     sliders = Slider.objects.all().order_by('-id')[0:5]
     banner_areas = Banner_Area.objects.all().order_by('-id')[0:3]
+    banner_bottom = Banner_Area.objects.all().order_by('-id')[3:5]
 
-
-    main_cat = Main_Category.objects.all()
-    sub_cat = Sub_Category.objects.all()
-    cat = Category.objects.all()
     top_deals_product = Product.objects.filter(section__name='Top Deals Of The Day')
+    hot_deals = Product.objects.filter(section__name='Hot Deals')
+    more_to_love = Product.objects.filter(section__name='More to love')
 
+    compuer = Product.objects.filter(category__name='Computer Accessories').order_by('-id')[0:5]
+    smart_phone = Product.objects.filter(category__name='Smart Phone').order_by('-id')[0:5]
+    gadgets = Product.objects.filter(category__name='Gadget').order_by('-id')[0:5]
+    women_fashion = Product.objects.filter(category__name='Beauty tools').order_by('-id')[0:5]
+    skin_care = Product.objects.filter(category__name='Skin Care').order_by('-id')[1:5]
+
+    top_skin_care = None
+    skin_care_products = Product.objects.filter(category__name='Skin Care').order_by('-id')
+    if skin_care_products.exists():
+        top_skin_care = skin_care_products.first()
 
     
+    top_bag = None
+    top_bag_products = Product.objects.filter(category__name='Bags').order_by('-id')
+    if top_bag_products.exists():
+        top_bag = top_bag_products.first()
+
+    
+    top_beauty_tools = None
+    Beauty_tools = Product.objects.filter(category__name='Beauty tools').order_by('-id')
+    if Beauty_tools.exists():
+        top_beauty_tools = Beauty_tools.first()
+
+    top_shoes = None
+    shoes = Product.objects.filter(category__name='Shoes').order_by('-id')
+    if shoes.exists():
+        top_shoes = shoes.first()
+
+    
+    top_muslim_wear = None
+    muslim_wear = Product.objects.filter(category__name='Muslim Wear').order_by('-id')
+    if muslim_wear.exists():
+        top_muslim_wear = muslim_wear.first()
+
+
 
     context = {
+        'brand': brand,
+
         'sliders': sliders,
         'banner_areas' : banner_areas,
-        'main_cat': main_cat,
-        'sub_cat': sub_cat,
-        'cat': cat,
+        'hot_deals': hot_deals,
         'top_deals_product': top_deals_product,
+        'more_to_love': more_to_love,
+
+        'compuer': compuer,
+        'smart_phone': smart_phone,
+        'gadgets': gadgets,
+        'women_fashion' : women_fashion,
+        'skin_care': skin_care,
+
+        'top_skin_care': top_skin_care,
+        'top_bag' : top_bag,
+        'top_beauty_tools': top_beauty_tools,
+        'top_shoes': top_shoes,
+        'top_muslim_wear': top_muslim_wear,
+        'banner_bottom': banner_bottom,
     }
     
     return render(request, 'main/home.html', context)
@@ -249,16 +302,35 @@ def cart_detail(request):
     cart = request.session.get('cart', {})
     
     coupon = None
+    # valid_coupon = False
+    # invalid_coupon = False
+    coupon_discount = 0
+    
+    cart_count = sum(item['quantity'] for item in cart.values())
+    cart_total_amount = sum(float(item['price']) * item['quantity'] for item in cart.values())
+    
+    context = {
+        'coupon': coupon,
+        'coupon_discount': coupon_discount,
+        'cart_total_amount': cart_total_amount,
+        'cart_count': cart_count,
+    }
+
+    return render(request, 'cart/cart.html', context)
+
+
+
+
+@login_required(login_url="/accounts/login")
+def checkout(request):
+    coupon = None
     valid_coupon = False
     invalid_coupon = False
     coupon_discount = 0
-    
-    # Convert price to integer and calculate total amount
-    cart_total_amount = sum(float(item['price']) * item['quantity'] for item in cart.values())
-    
+
     if request.method == "GET":
         coupon_code = request.GET.get('coupon_code')
-        
+
         if coupon_code:
             try:
                 coupon = CuponCode.objects.get(code=coupon_code)
@@ -274,7 +346,129 @@ def cart_detail(request):
         'valid_coupon': valid_coupon,
         'invalid_coupon': invalid_coupon,
         'coupon_discount': coupon_discount,
-        'cart_total_amount': cart_total_amount,
     }
+    
+    return render(request, 'cart/checkout.html', context)
 
-    return render(request, 'cart/cart.html', context)
+
+
+
+
+@login_required
+def Order(request):
+    if request.method == "POST":
+        user = request.user
+        product_name = request.POST.get('product_name')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        company_name = request.POST.get('company_name')
+        country = request.POST.get('country')
+        address = request.POST.get('address')
+        address_2 = request.POST.get('address_2')
+        town_city = request.POST.get('town_city')
+        state = request.POST.get('state')
+        postcode = request.POST.get('postcode')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        tranjection_number = request.POST.get('tranjection_number')
+        tranjection_id = request.POST.get('tranjection_id')
+        note = request.POST.get('note')
+        cart_total_amount = request.POST.get('cart_total_amount')
+        coupon_discount_price = request.POST.get('coupon_discount')
+        shipping_cost = request.POST.get('shipping_cost')
+        order_total = request.POST.get('order_total')
+
+
+        
+
+        order = Checkout(
+            user=user,
+            product_name=product_name,
+            first_name=first_name,
+            last_name=last_name,
+            company_name=company_name,
+            country=country,
+            address=address,
+            address_2=address_2,
+            town_city=town_city,
+            state=state,
+            postcode=postcode,
+            phone=phone,
+            email=email,
+            tranjection_number=tranjection_number,
+            tranjection_id=tranjection_id,
+            note=note,
+            cart_total_amount=cart_total_amount,
+            coupon_discount_price=coupon_discount_price,
+            shipping_cost=shipping_cost,
+            order_total=order_total,
+        )
+        order.save()
+        # messages.success(request, 'Order placed successfully.')
+    return redirect('home')
+
+
+
+
+def PreOrder(request, id):
+    product = Product.objects.get(id=id)
+
+
+    context = {
+        'product': product
+    }
+    return render(request, 'cart/preorder.html', context)
+
+
+def SavePreOrder(request):
+    if request.method == "POST":
+        user = request.user.email
+        product_name = request.POST.get('product_name')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        company_name = request.POST.get('company_name')
+        country = request.POST.get('country')
+        address = request.POST.get('address')
+        address_2 = request.POST.get('address_2')
+        town_city = request.POST.get('town_city')
+        state = request.POST.get('state')
+        postcode = request.POST.get('postcode')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        tranjection_number = request.POST.get('tranjection_number')
+        tranjection_id = request.POST.get('tranjection_id')
+        note = request.POST.get('note')
+        cart_total_amount = request.POST.get('cart_total_amount')
+        coupon_discount_price = request.POST.get('coupon_discount')
+        shipping_cost = request.POST.get('shipping_cost')
+        order_total = request.POST.get('order_total')
+
+        
+
+        
+
+        preorder = PreOrder(
+            user=user,
+            product_name=product_name,
+            first_name=first_name,
+            last_name=last_name,
+            company_name=company_name,
+            country=country,
+            address=address,
+            address_2=address_2,
+            town_city=town_city,
+            state=state,
+            postcode=postcode,
+            phone=phone,
+            email=email,
+            tranjection_number=tranjection_number,
+            tranjection_id=tranjection_id,
+            note=note,
+            cart_total_amount=cart_total_amount,
+            coupon_discount_price=coupon_discount_price,
+            shipping_cost=shipping_cost,
+            order_total=order_total,
+        )
+        preorder.save()
+        # messages.success(request, 'Order placed successfully.')
+    return redirect('home')

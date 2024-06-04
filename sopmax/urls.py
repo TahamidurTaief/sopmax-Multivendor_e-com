@@ -43,6 +43,14 @@ urlpatterns = [
     path('cart/item_decrement/<uuid:id>/', views.item_decrement, name='item_decrement'),
     path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
     path('cart/cart-detail/',views.cart_detail,name='cart_detail'),
+
+    # path('cart/save/',views.saveCart,name='save_cart'),
+
+    # CHECKOUT
+    path('checkout/', views.checkout, name='checkout'),
+    path('order/', views.Order, name='order'),
+    path('preorder/<uuid:id>', views.PreOrder, name='preorder'),
+    path('preorder/save', views.SavePreOrder, name='savepreorder'),
     
 
 

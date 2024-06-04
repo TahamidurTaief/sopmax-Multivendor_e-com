@@ -1708,6 +1708,15 @@ input {
   background: #FF0000;
   color: #ffffff;
 }
+
+.header-action .icon-link .count:hover{
+  background-color: white;
+  color: #FF0000;
+  border: 1px solid #FF0000;
+  min-width: 25px;
+}
+
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .header-action .icon-link .count {
     left: -10px;
@@ -3191,6 +3200,7 @@ input {
   font-weight: 400;
   margin-bottom: 0;
   font-size: 14px;
+
 }
 
 /*----------------------------------------*/
@@ -3201,6 +3211,7 @@ input {
   position: relative;
   transition: 0.3s;
   z-index: 3;
+  height: 400px !important;
 }
 .product__item:hover {
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.1);

@@ -287,7 +287,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action">
-                                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
                                                         <i class="fal fa-eye"></i>
                                                         <i class="fal fa-eye"></i>
                                                     </a>
@@ -318,10 +318,10 @@
                                                 </div>
                                             </div>
                                             <div class="product__add-cart-s text-center">
-                                                <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                <a href="{% url 'cart_add' i.id %}" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
                                                 Add to Cart
-                                                </button>
-                                                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                </a>
+                                                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
                                                     Quick View
                                                 </button>
                                             </div>
@@ -829,7 +829,7 @@
                                                                 <a href="product-details.html"><img src="assets/img/product/sm-8.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
-                                                                <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                                <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
                                                                     <i class="fal fa-eye"></i>
                                                                     <i class="fal fa-eye"></i>
                                                                 </a>
@@ -879,7 +879,7 @@
                                                 <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
                                                 Add to Cart
                                                 </button>
-                                                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
                                                     Quick View
                                                 </button>
                                             </div>
@@ -927,7 +927,7 @@
     </div>
     <!-- shop-area-end -->
 
-    <!-- shop modal start -->
+    {% comment %} <!-- shop modal start -->
     <div class="modal fade" id="productModalId" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered product__modal" role="document">
             <div class="modal-content">
@@ -1053,7 +1053,124 @@
             </div>
         </div>
     </div>
-    <!-- shop modal end -->
+    <!-- shop modal end --> {% endcomment %}
+
+
+
+
+    {% for i in product %}
+    <div class="modal fade" id="productModalId-{{forloop.counter}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+            <div class="modal-content">
+                <div class="product__modal-wrapper p-relative">
+                    <div class="product__modal-close p-absolute">
+                        <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                    </div>
+                    <div class="product__modal-inner">
+                        <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="product__modal-box">
+                                <div class="tab-content" id="modalTabContent">
+
+                                    <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
+                                        <div class="product__modal-img w-img">
+                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                        </div>
+                                    </div>
+                                    
+                                    {% for image in i.product_image_set.all %}
+                                    <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
+                                        <div class="product__modal-img w-img">
+                                            <img src="{{image.image}}" alt="Product">
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+
+
+                                
+                                    </div>
+                                <ul class="nav nav-tabs" id="modalTab" role="tablist">
+
+                                    {% for image in i.product_image_set.all %}
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
+                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                        </button>
+                                    </li>
+                                    {% endfor %}
+
+                                    
+                                    </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="product__modal-content">
+                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <div class="product__review d-sm-flex">
+                                    <div class="rating rating__shop mb-10 mr-30">
+                                    <ul>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                <div class="product__price">
+                                    <span>&#x9F3; {{i.price}}</span>
+                                </div>
+                                <div class="product__modal-des mt-20 mb-15">
+                                    {{i.Product_information|safe }}
+                                </div>
+                                <div class="product__stock mb-20">
+                                    <span class="mr-10">Availability :</span>
+                                    <span>{{i.availability}} in stock</span>
+                                </div>
+                                <div class="product__modal-form">
+                                    <form action="#">
+                                    <div class="pro-quan-area d-lg-flex align-items-center">
+                                        <div class="product-quantity mr-20 mb-25">
+                                            <div class="cart-plus-minus p-relative"><input type="text" value="1" /></div>
+                                        </div>
+                                        <div class="pro-cart-btn mb-25">
+                                            <a href="{% url 'cart_add' i.id %}" class="cart-btn">Add to cart</a>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="product__stock mb-30">
+                                    <ul>
+                                        <li><a href="#">
+                                            <span class="sku mr-10">Model:</span>
+                                            <span>{{i.model_name}}</span></a>
+                                        </li>
+                                        <li><a href="#">
+                                            <span class="cat mr-10">Categories:</span>
+                                            <span>{{i.category}}</span></a>
+                                        </li>
+                                        <li><a href="#">
+                                            <span class="tag mr-10">Tags:</span>
+                                            <span>{{i.tags}}</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+
+
 
 </main>
 

@@ -40,7 +40,7 @@
         <div class="container">
            <div class="row">
               <div class="col-12">
-                    <form action="#">
+                    <form action="" method="get">
                        <div class="table-content table-responsive">
                           <table class="table">
                                 <thead>
@@ -50,7 +50,7 @@
                                       <th class="product-price">Unit Price</th>
                                       <th class="product-quantity">Quantity</th>
                                       <th class="product-subtotal">Total</th>
-                                      <th class="product-remove">Remove</th>
+                                      {% comment %} <th class="product-remove">Remove</th> {% endcomment %}
                                    </tr>
                                 </thead>
                                 <tbody>
@@ -76,8 +76,9 @@
 
                                       </td>
                                       <td class="product-subtotal" ><span class="amount">&#2547; {{ value.price|multiply:value.quantity }}</span></td>
-                                      <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                   </tr>
+                                      {% comment %} <td class="product-remove"><a href="{% url 'cart_clear' %}"><i class="fa fa-times"></i></a></td> {% endcomment %}
+
+                                    </tr>
                                    {% endfor %}
 
                                 </tbody>
@@ -86,21 +87,11 @@
                        <div class="row">
                           <div class="col-12">
                                 <div class="coupon-all">
-
-                                    <form method="get">     
-                                        <div class="coupon">
-                                            {% if valid_coupon %}
-                                                {% include "include/messages.html" %}
-                                                
+                                             {% if valid_coupon %}
+                                                {% include "include/messages.html" %}                                                
                                             {% else %}
                                                 {% include "include/messages.html" %}
                                             {% endif %}
-
-                                            <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
-                                            <button class="tp-btn-h1" name="apply_coupon" type="submit">Apply
-                                                  coupon</button>
-                                         </div>
-                                    </form>
                                    
                                    <div class="coupon2">
                                       <a href="{% url 'cart_clear' %}" class="tp-btn-h1" name="update_cart" type="submit">Clear cart</a>
@@ -115,10 +106,6 @@
                                    <ul class="mb-20">
                                     <li>Subtotal <span>&#2547; {{ cart_total_amount }}</span></li>
                 
-                                    {% if valid_coupon %}
-                                    <li>Coupon Code Applied <span>&#2547; {{ coupon.discount }}</span></li>
-                                    {% endif %}
-                
                                     {% if cart_total_amount > 5000 %}
                                     <li>Delevary Charge <span>Free Shipping</span></li>
                                     <li id="total"><b>Total </b><span><b>&#2547; {{ cart_total_amount }}</b></span></li>
@@ -128,7 +115,7 @@
                                     {% endif %}
                                     
                                 </ul>
-                                   <a class="tp-btn-h1" href="checkout.html">Proceed to checkout</a>
+                                   <a class="tp-btn-h1" href="{% url 'checkout' %}">Proceed to checkout</a>
                                 </div>
                           </div>
                        </div>

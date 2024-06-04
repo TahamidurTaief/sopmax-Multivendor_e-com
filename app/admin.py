@@ -28,6 +28,8 @@ admin.site.register(Additional_Information)
 admin.site.register(Color)
 admin.site.register(Product_Size)
 admin.site.register(Brand)
+admin.site.register(Checkout)
+admin.site.register(PreOrder)
 
 
 @admin.register(CuponCode)
