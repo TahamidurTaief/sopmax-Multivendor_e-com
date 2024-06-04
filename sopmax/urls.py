@@ -48,9 +48,10 @@ urlpatterns = [
 
     # CHECKOUT
     path('checkout/', views.checkout, name='checkout'),
-    path('order/', views.Order, name='order'),
+    path('checkout/save/', views.checkout, name='savecheckout'),
     path('preorder/<uuid:id>', views.PreOrder, name='preorder'),
     path('preorder/save', views.SavePreOrder, name='savepreorder'),
+    path('order/', views.Order, name='order'),
     
 
 

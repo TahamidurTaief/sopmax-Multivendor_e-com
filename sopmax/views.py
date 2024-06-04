@@ -355,7 +355,7 @@ def checkout(request):
 
 
 @login_required
-def Order(request):
+def checkout(request):
     if request.method == "POST":
         user = request.user
         product_name = request.POST.get('product_name')
@@ -381,7 +381,7 @@ def Order(request):
 
         
 
-        order = Checkout(
+        orderCheckout = Checkout(
             user=user,
             product_name=product_name,
             first_name=first_name,
@@ -403,7 +403,7 @@ def Order(request):
             shipping_cost=shipping_cost,
             order_total=order_total,
         )
-        order.save()
+        orderCheckout.save()
         # messages.success(request, 'Order placed successfully.')
     return redirect('home')
 
@@ -472,3 +472,17 @@ def SavePreOrder(request):
         preorder.save()
         # messages.success(request, 'Order placed successfully.')
     return redirect('home')
+
+
+
+
+def Order(request):
+    user = request.user
+    checkout_obj = Checkout.objects.filter(user=user)
+
+
+    context = {
+        'checkout_obj': checkout_obj
+    }
+
+    return render(request, 'cart/order.html', context)

@@ -226,9 +226,9 @@
                                 <li><a href="{% url 'cart_detail' %}">My Cart</a></li>
                                 <li><a href="{% url 'checkout' %}">Checkout</a></li>
 
-                                <li><a href="blog.html">My Orders <i class="far fa-angle-down"></i></a>
+                                <li><a href="{% url 'order' %}">My Orders <i class="far fa-angle-down"></i></a>
                                     <ul class="submenu">
-                                        <li><a href="blog.html">Order</a></li>
+                                        <li><a href="{% url 'order' %}">Order</a></li>
                                         <li><a href="blog-details.html">Order Tracking</a></li>
                                     </ul>
                                 </li>
