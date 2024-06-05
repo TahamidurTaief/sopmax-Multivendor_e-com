@@ -73,18 +73,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sopmax.wsgi.application'
 
 
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'wishlist.context_processors.wishlist_items',
+]
+
+WISHLIST_ITEM_MODEL = 'my_webshop.Product'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sopmax',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

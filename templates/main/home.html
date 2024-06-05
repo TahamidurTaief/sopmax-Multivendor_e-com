@@ -145,7 +145,7 @@
                                 <div class="product__thumb fix">
                                     <div class="product-image w-img">
                                         <a href="{{i.get_absolute_url}}">
-                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; max-width:130px;">
+                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; width: auto;">
                                         </a>
                                     </div>
                                     <div class="product__offer">
@@ -243,7 +243,7 @@
                                 <div class="product__thumb fix">
                                     <div class="product-image w-img">
                                         <a href="{{i.get_absolute_url}}">
-                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; max-width:130px;">
+                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; width: auto;">
                                         </a>
                                     </div>
                                     <div class="product__offer">
@@ -341,7 +341,7 @@
                             <div class="product__thumb fix">
                                 <div class="product-image w-img">
                                     <a href="{{i.get_absolute_url}}">
-                                        <img src="{{i.featured_image}}" alt="product" style="height:180px; max-width:130px;">
+                                        <img src="{{i.featured_image}}" alt="product" style="height:180px; width: auto;">
                                     </a>
                                 </div>
                                 <div class="product__offer">
@@ -1012,8 +1012,22 @@
     </section>
     <!-- moveing-text-area-end -->
 
+    <section class="p-4 mt-20">
+        <div class="section__title">
+            <h5 class="st-titile">All Categories</h5>
+        </div>
+        <div class="container d-inline-flex mt-50">
+
+            {% for i in category %}
+            <div class="card pr-3" style="width: 6rem; margin-left:10px">
+                <a href="/product/?categoryID={{i.id}}"><img src="{{i.image.url}}" class="card-img-top" alt="..."></a>
+            </div>
+            {% endfor %}
+            </div>
+    </section>
+
     <!-- banner__area-start -->
-    <section class="banner__area pt-60 pb-25">
+    <section class="banner__area pt-100 pb-25">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-6 col-md-12">

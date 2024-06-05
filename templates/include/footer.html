@@ -1,7 +1,7 @@
 <!-- footer-start -->
 <footer>
-    <div class="fotter-area d-dark-bg">
-        <div class="footer__top pt-80 pb-15">
+   <div class="fotter-area d-dark-bg">
+        {% comment %}  <div class="footer__top pt-80 pb-15">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-5 col-lg-4 order-last-md">
@@ -14,12 +14,12 @@
                                     <div class="footer__widget-content">
                                         <div class="footer__link">
                                             <ul>
-                                                <li><a href="faq.html">New Customers</a></li>
-                                                <li><a href="faq.html">How to use Account</a></li>
-                                                <li><a href="faq.html">Placing an Order</a></li>
-                                                <li><a href="faq.html">Payment Methods</a></li>
-                                                <li><a href="faq.html">Delivery &amp; Dispatch</a></li>
-                                                <li><a href="faq.html">Problems with Order</a></li>
+                                                <li><a href=" ">New Customers</a></li>
+                                                <li><a href=" ">How to use Account</a></li>
+                                                <li><a href=" ">Placing an Order</a></li>
+                                                <li><a href=" ">Payment Methods</a></li>
+                                                <li><a href=" ">Delivery &amp; Dispatch</a></li>
+                                                <li><a href=" ">Problems with Order</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -33,11 +33,11 @@
                                     <div class="footer__widget-content">
                                         <div class="footer__link">
                                             <ul>
-                                                <li><a href="faq.html">Help Center</a></li>
-                                                <li><a href="faq.html">Contact Us</a></li>
-                                                <li><a href="faq.html">Report Abuse</a></li>
-                                                <li><a href="faq.html">Submit a Dispute</a></li>
-                                                <li><a href="faq.html">Policies &amp; Rules</a></li>
+                                                <li><a href=" ">Help Center</a></li>
+                                                <li><a href=" ">Contact Us</a></li>
+                                                <li><a href=" ">Report Abuse</a></li>
+                                                <li><a href=" ">Submit a Dispute</a></li>
+                                                <li><a href=" ">Policies &amp; Rules</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -60,12 +60,12 @@
                                                 <div class="footer__widget-content">
                                                     <div class="footer__link">
                                                         <ul>
-                                                            <li><a href="faq.html">Product Support</a></li>
+                                                            <li><a href=" ">Product Support</a></li>
                                                             <li><a href="checkout.html">Checkout</a></li>
                                                             <li><a href="cart.html">Shopping Cart</a></li>
                                                             <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="faq.html">Terms &amp; Conditions &amp;</a></li>
-                                                            <li><a href="faq.html">Redeem Voucher</a></li>
+                                                            <li><a href=" ">Terms &amp; Conditions &amp;</a></li>
+                                                            <li><a href=" ">Redeem Voucher</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -82,7 +82,7 @@
                                                 <li><a href="contact.html">Store Location</a></li>
                                                 <li><a href="my-account.html">My account</a></li>
                                                 <li><a href="contact.html">Order Tracking</a></li>
-                                                <li><a href="faq.html">FAQs</a></li>
+                                                <li><a href=" ">FAQs</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <div class="footer__bottom">
             <div class="container">
                 <div class="footer__bottom-content pt-55 pb-45">
@@ -127,32 +127,28 @@
                         <div class="col-xl-12">
                             <div class="footer__links text-center mb-25">
                                 <p>
-                                    <a href="faq.html">Online Shopping</a>
-                                    <a href="faq.html">Promotions</a>
-                                    <a href="faq.html">My Orders</a>
-                                    <a href="faq.html">Help</a>
-                                    <a href="faq.html">Customer Service</a>
-                                    <a href="faq.html">Support</a>
-                                    <a href="faq.html">Most Populars</a>
-                                    <a href="faq.html">New Arrivals</a>
-                                    <a href="faq.html">Special Products </a>
-                                    <a href="faq.html">Manufacturers</a>
+                                    <a href="{% url 'product' %}">Online Shopping</a>
+                                    <a href="{% url 'order' %}">My Orders</a>
+                                    <a href="mailto:sopmax2024@gmail.com">Help</a>
+                                    <a href=" ">Customer Service</a>
+                                    <a href=" ">Support</a>
+                                    <a href=" ">Most Populars</a>
+                                    <a href=" ">New Arrivals</a>
+                                    <a href=" ">Special Products </a>
+                                    <a href=" ">Manufacturers</a>
                                     <br>
-                                    <a href="faq.html">Garden Equipments</a>
-                                    <a href="faq.html">Powers And Hand Tools </a>
-                                    <a href="faq.html">Utensil &amp; Gadget </a>
-                                    <a href="faq.html">Printers</a>
-                                    <a href="faq.html">Projectors</a>
-                                    <a href="faq.html">Scanners</a>
-                                    <a href="faq.html">Store</a>
-                                    <a href="faq.html">Business</a>
+                                    <a href="{% url 'product' %}">Computer</a>
+                                    <a href="{% url 'product' %}">Powers And Hand Tools </a>
+                                    <a href="{% url 'product' %}">Utensil &amp; Gadget </a>
+                                    <a href="{% url 'product' %}">Printers</a>
+                                    <a href="{% url 'product' %}">Projectors</a>
+                                    <a href="{% url 'product' %}">Scanners</a>
+                                    <a href="{% url 'product' %}">Smart Phone</a>
+                                    <a href="{% url 'product' %}">Camera</a>
                                 </p>
                             </div>
-                            <div class="payment-image text-center mb-25">
-                                <a href="contact.html"><img src="assets/img/payment/payment.png" alt=""></a>
-                            </div>
                             <div class="copy-right-area text-center">
-                                <p>Copyright © <span>Sopmax.</span> All Rights Reserved. Developed by <a href="#"><span class="main-color">Tahamidur Taief.</span></a></p>
+                                <p>Copyright © <span>Sopmax.</span> All Rights Reserved. Developed by <a href="https://www.tahamidurtaief.com/" target="_blank"><span class="main-color">Tahamidur Taief.</span></a></p>
                             </div>
                         </div>
                     </div>

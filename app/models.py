@@ -40,27 +40,6 @@ class Brand(models.Model):
     
 
 
-class Color(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=100, default="", null="", blank="") 
-    code = models.CharField(max_length=10, default="", null="", blank="") 
-
-    def __str__(self):
-        return self.name
-
-
-
-
-class Product_Size(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=100, default="", null="", blank="") 
-
-    def __str__(self):
-        return self.name
-
-
-
-
 
 class Main_Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -76,6 +55,7 @@ class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     main_Category= models.ForeignKey(Main_Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, default="", null="", blank="") 
+    image = models.ImageField(upload_to='category_images', null=True, blank=True)
 
     def __str__(self):
         return self.name + "-- " + self.main_Category.name
@@ -110,16 +90,26 @@ class Product(models.Model):
     availability = models.IntegerField(default=0, null=True, blank=True)
     price = models.IntegerField(default=0, null=True, blank=True)
     # delevary_charge = models.IntegerField(default=150, null=True, blank=True)
-    discount_price = models.IntegerField(default=0, null=True, blank=True)
     discount = models.IntegerField(default=0, null=True, blank=True)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True, default="")
-    size = models.ForeignKey(Product_Size, on_delete=models.CASCADE, null=True, blank=True, default="")
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True, default="")
     tags = models.CharField(max_length=100, default="", null="", blank="")
     featured_image = models.CharField(max_length=200, default="", null="", blank="")
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
+
+    def discounted_price(self):
+        try:
+            price = int(self.price)
+            discount = int(self.discount)
+        except (TypeError, ValueError):
+            return None
+        
+        if price is None:
+            return None
+        if discount is None or discount == 0:
+            return price
+        return max(price - (price * discount / 100), 0)
 
 
     def __str__(self): 
@@ -185,7 +175,33 @@ class Additional_Information(models.Model):
     
 
 
-from django.db import models
+
+
+class Color(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=100, default="", null="", blank="") 
+    code = models.CharField(max_length=10, default="", null="", blank="") 
+
+    def __str__(self):
+        return self.name
+
+
+
+
+class Product_Size(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,  null=True, blank=True)
+    name = models.CharField(max_length=100, default="", null="", blank="") 
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+
 from django.contrib.auth.models import User
 
 class Checkout(models.Model):
@@ -213,7 +229,6 @@ class Checkout(models.Model):
 
     def __str__(self):
         return f"Checkout for {self.first_name} {self.last_name}"
-
 
 
 class PreOrder(models.Model):

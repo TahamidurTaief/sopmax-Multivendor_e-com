@@ -2,17 +2,22 @@ from django.contrib import admin
 from .models import *
 
 
-
-class Product_Images(admin.TabularInline):
+class ProductImagesInline(admin.TabularInline):
     model = Product_Image
 
-class Additional_Informations(admin.TabularInline):
+class AdditionalInformationsInline(admin.TabularInline):
     model = Additional_Information
 
+class ProductColorInline(admin.TabularInline):
+    model = Color
+
+class ProductSizeInline(admin.TabularInline):
+    model = Product_Size
+
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [Product_Images, Additional_Informations]
-    list_display = ['name', 'price', 'quantity', 'category','color', 'section']
-    list_editable = ['price', 'quantity', 'category', 'color', 'section']
+    inlines = [ProductImagesInline, AdditionalInformationsInline, ProductColorInline, ProductSizeInline]
+    list_display = ['name', 'price', 'quantity', 'category', 'section']
+    list_editable = ['price', 'quantity', 'category', 'section']
 
 
 
