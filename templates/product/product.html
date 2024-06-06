@@ -1,6 +1,6 @@
 {% extends "base.html" %}
+{% load cal_productprice %}
 {% load static %}
-
 {% block content %}
 
 
@@ -220,8 +220,8 @@
                                         <div class="product__item product__item-d">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="product-details.html">
-                                                        <img src="{{i.featured_image}}" alt="sopmax" style="height:120px; width:auto;">
+                                                    <a href="{{i.get_absolute_url}}">
+                                                        <img src="{{i.featured_image.url}}" alt="sopmax" style="height:120px; width:auto;">
                                                     </a>
                                                 </div>
                                                 <div class="product-action">
@@ -232,7 +232,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__content-3 pt-2">
-                                                <h6><a href="product-details.html">{{i.name | slice:":30"}}...</a></h6>
+                                                <h6><a href="{{i.get_absolute_url}}">{{i.name | slice:":30"}}...</a></h6>
                                                 <div class="rating mb-5">
                                                     <ul>
                                                         <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -243,8 +243,8 @@
                                                     </ul>
                                                     <span>(01 review)</span>
                                                 </div>
-                                                <div class="price mb-10">
-                                                    <span>৳ {{i.price}}</span>
+                                                <div class="price mb-10 pt-5">
+                                                    <span style="color:red; font-weight:400; ">&#x9F3;{% call_sellprice i.price i.discount %}</span>&nbsp;&nbsp;<del>{{i.price}}</del>
                                                 </div>
                                             </div>
                                             <div class="product__add-cart-s text-center">
@@ -271,7 +271,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-1.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-1.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product__offer">
                                                                 <span class="discount">-15%</span>
@@ -294,7 +294,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">Classic Leather Backpack Daypack 2022</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">Classic Leather Backpack Daypack 2022</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -307,10 +307,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -342,7 +342,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-2.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-2.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
                                                                 <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
@@ -362,7 +362,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">Samsang Galaxy A70 128GB Dual-SIM</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">Samsang Galaxy A70 128GB Dual-SIM</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -375,10 +375,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -410,7 +410,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-3.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-3.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
                                                                 <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
@@ -430,7 +430,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">Coffee Maker AH240a Full Function</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">Coffee Maker AH240a Full Function</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -443,10 +443,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -478,7 +478,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-4.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-4.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
                                                                 <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
@@ -498,7 +498,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">Imported Wooden Felt Cushion Chair</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">Imported Wooden Felt Cushion Chair</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -511,10 +511,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -546,7 +546,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-5.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-5.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product__offer">
                                                                 <span class="discount">-15%</span>
@@ -569,7 +569,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">Sunhouse Decorative Lights – Imported</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">Sunhouse Decorative Lights – Imported</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -582,10 +582,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -617,7 +617,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-6.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-6.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
                                                                 <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
@@ -637,7 +637,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">Korea Stainless Steel Pot Set 5 Piecs</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">Korea Stainless Steel Pot Set 5 Piecs</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -650,10 +650,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -685,7 +685,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-7.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-7.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
                                                                 <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
@@ -705,7 +705,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">HP Stainless Steel Hot Water Bottle</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">HP Stainless Steel Hot Water Bottle</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -718,10 +718,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -753,7 +753,7 @@
                                                     <div class="col-md-4">
                                                         <div class="features-thum">
                                                             <div class="features-product-image w-img">
-                                                                <a href="product-details.html"><img src="assets/img/product/sm-8.jpg" alt=""></a>
+                                                                <a href="{{product.get_absolute_url}}"><img src="assets/img/product/sm-8.jpg" alt=""></a>
                                                             </div>
                                                             <div class="product-action">
                                                                 <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
@@ -773,7 +773,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="product__content product__content-d">
-                                                            <h6><a href="product-details.html">The North Face Womens Resolve 2 Jack</a></h6>
+                                                            <h6><a href="{{product.get_absolute_url}}">The North Face Womens Resolve 2 Jack</a></h6>
                                                             <div class="rating mb-5">
                                                                 <ul class="rating-d">
                                                                     <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -786,10 +786,10 @@
                                                             </div>
                                                             <div class="features-des">
                                                                 <ul>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
-                                                                    <li><a href="product-details.html"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Display with 3088 x 1440 pixels resolution.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Memory, Storage &amp; SIM: 12GB RAM, 256GB.</a></li>
+                                                                    <li><a href="{{product.get_absolute_url}}"><i class="fas fa-circle"></i> Androi v10.0 Operating system.</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -914,7 +914,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">Samsung C49J89: £875, Debenhams Plus</a></h4>
+                                <h4><a href="{{product.get_absolute_url}}">Samsung C49J89: £875, Debenhams Plus</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1001,14 +1001,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1022,7 +1022,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1033,7 +1033,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{{product.get_absolute_url}}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>

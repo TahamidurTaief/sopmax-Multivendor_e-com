@@ -5,12 +5,13 @@
 
 {% block content %}
 <section class="root">
+  <div class="container">
     <figure>
-      <img src="https://photos.melorra.com/fit-in/1024x1024/dev/catalogue/images/ET/OPT/580/C16PET09F_P_580.jpg" alt="">
+      <img src="{% static "assets/img/favicon.png" %}" alt="" style="border:none">
       <figcaption>
-        <h4>Some Jewellery Name</h4>
-        <h6>Category</h6>
-        <h2>₹ 23,456</h2>
+        <h4>{{ checkout.product_name }}</h4>
+        <h6>{{checkout.tranjection_number}}</h6>
+        <h2>&#x9F3; {{ checkout.order_total }}</h2>
       </figcaption>
     </figure>
     <div class="order-track">
@@ -21,7 +22,7 @@
         </div>
         <div class="order-track-text">
           <p class="order-track-text-stat">Order Received</p>
-          <span class="order-track-text-sub">21st November, 2019</span>
+          <span class="order-track-text-sub">{{ tracking.order_received }}</span>
         </div>
       </div>
       <div class="order-track-step">
@@ -31,7 +32,7 @@
         </div>
         <div class="order-track-text">
           <p class="order-track-text-stat">Order Processed</p>
-          <span class="order-track-text-sub">21st November, 2019</span>
+          <span class="order-track-text-sub">{{ tracking.order_processed }}</span>
         </div>
       </div>
       <div class="order-track-step">
@@ -41,7 +42,7 @@
         </div>
         <div class="order-track-text">
           <p class="order-track-text-stat">Manufracturing In Progress</p>
-          <span class="order-track-text-sub">21st November, 2019</span>
+          <span class="order-track-text-sub">{{ tracking.manufacturing_in_progress }}</span>
         </div>
       </div>
       <div class="order-track-step">
@@ -51,7 +52,7 @@
         </div>
         <div class="order-track-text">
           <p class="order-track-text-stat">Order Dispatched</p>
-          <span class="order-track-text-sub">21st November, 2019</span>
+          <span class="order-track-text-sub">{{ tracking.order_dispatched }}</span>
         </div>
       </div>
       <div class="order-track-step">
@@ -61,9 +62,10 @@
         </div>
         <div class="order-track-text">
           <p class="order-track-text-stat">Order Deliverd</p>
-          <span class="order-track-text-sub">21st November, 2019</span>
+          <span class="order-track-text-sub">{{ tracking.order_delivered }}</span>
         </div>
       </div>
+    </div>
     </div>
   </section>
 {% endblock %}

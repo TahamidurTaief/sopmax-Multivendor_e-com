@@ -36,7 +36,7 @@
                             <div class="ovic-menu-wrapper">
                                 <ul>
                                     {% comment %} <li><a href="about.html">About Us</a></li> {% endcomment %}
-                                    <li><a href="contact.html">Order Tracking</a></li>
+                                    <li><a href="{% url 'order_tracking' %}">Order Tracking</a></li>
                                     {% comment %} <li><a href="contact.html">Contact Us</a></li> {% endcomment %}
                                     <li><a href="faq.html">FAQs</a></li>
                                 </ul>
@@ -103,12 +103,12 @@
             </div>
         {% endif %}
                             <div class="block-wishlist action">
-                                <a class="icon-link" href="wishlist.html">
-                                <i class="flaticon-heart"></i>
-                                <span class="count">0</span>
+                                <a class="icon-link" href="{% url 'order' %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" x="0" y="0" viewBox="0 0 60 60" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g transform="matrix(0.9999999999999999,0,0,0.9999999999999999,0,0)"><path d="M16 28h13a1 1 0 0 0 0-2H16a1 1 0 0 0 0 2zM16 35a1 1 0 0 0 1 1h23a1 1 0 0 0 0-2H17a1 1 0 0 0-1 1zM42.293 21.707A1 1 0 0 0 43 22h.1a1 1 0 0 0 .733-.44l8-12a1 1 0 1 0-1.664-1.11l-7.324 10.981-3.138-3.138a1 1 0 0 0-1.414 1.414z" fill="#000000" opacity="1" data-original="#000000" class=""></path><path d="M1 16h5.861l4.181 23.47c.359 2.02.583 3.274.768 4.051L9.5 47.035a3.24 3.24 0 0 0 2.748 4.958h2.787A4.947 4.947 0 0 0 14 55a5 5 0 1 0 8.971-3h10.056A4.953 4.953 0 0 0 32 55a5 5 0 0 0 10 0 4.953 4.953 0 0 0-1.026-3H44a1 1 0 0 0 0-2l-31.756-.007a1.241 1.241 0 0 1-1.065-1.878l2.208-3.352 29.072-1.524a3.418 3.418 0 0 0 3.078-2.407l3.472-11.392A15.033 15.033 0 1 0 30.558 19H9.427l-.743-4.176A1 1 0 0 0 7.7 14H1a1 1 0 0 0 0 2zm18 42a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm18 0a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm8-56a13 13 0 1 1-13 13A13.015 13.015 0 0 1 45 2zM31.261 21a14.875 14.875 0 0 0 15.521 8.884l-3.157 10.361a1.392 1.392 0 0 1-1.268 1l-28.7 1.5L9.784 21z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg>
+                                <span class="count">{{ total_orders }}</span>
                                 <span class="text">
-                                <span class="sub">Favorite</span>
-                                My Wishlist </span>
+                                <span class="sub">Order</span>
+                                My Order </span>
                                 </a>
                             </div>
                             <div class="block-cart action">
@@ -177,29 +177,20 @@
                             <div class="cat__menu">
                                 <nav id="mobile-menu" style="display: block;">
                                     <ul>
+                                        <li><a href="{% url 'home' %}">Home</a></li>
+                                        {% comment %} <li><a href="{% url 'about-us' %}">About Us</a></li>
+                                        <li><a href="{% url 'contact-us' %}">Contact Us</a></li> {% endcomment %}
+                                        <li><a href="{% url 'product' %}">Product</a></li>
+                                        <li><a href="{% url 'cart_detail' %}">My Cart</a></li>
+                                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                                        <li><a href="{% url 'order' %}">Order</a></li>
+                                        <li><a href="{% url 'order_tracking' %}">Order Tracking</a></li>
+                                    <hr>
 
-                                        {% for i in main_cat %}
-                                        <li>
-                                            <a href="">{{i.name}} <i class="far fa-angle-down"></i></a>
-                                            <ul class="mega-menu">
-
-                                                {% for cat in i.category_set.all %}
-                                                <li><a href="/product/?categoryID={{cat.id}}">{{cat.name}}</a>
-                                                    <ul class="mega-item">
-
-                                                        {% for subcat in cat.sub_category_set.all %}
-                                                        <li><a href="/product/?categoryID={{cat.id}}">{{subcat.name}}</a></li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                </li>
-
-                                                {% endfor %}
-
-                                                
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        {% endfor %}
+                                        {% comment %} {% for i in category %}
+                                        <li><a href="#">{{ i.name }} <i class="far fa-angle-down"></i></a>
+                                       
+                                        {% endfor %} {% endcomment %}
 
                                         {% comment %} <li><a href="shop.html">Health &amp; Beauty</a></li> {% endcomment %}
                                     </ul>
@@ -229,7 +220,7 @@
                                 <li><a href="{% url 'order' %}">My Orders <i class="far fa-angle-down"></i></a>
                                     <ul class="submenu">
                                         <li><a href="{% url 'order' %}">Order</a></li>
-                                        <li><a href="blog-details.html">Order Tracking</a></li>
+                                        <li><a href="{% url 'order_tracking' %}">Order Tracking</a></li>
                                     </ul>
                                 </li>
                                 {% comment %} <li><a href="{% url 'logout' %}">logout</a></li> {% endcomment %}

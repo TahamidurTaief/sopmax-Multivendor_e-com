@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from app.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -12,7 +12,12 @@ from cart.cart import Cart #type: ignore
 
 # Create your views here.
 def base(request):
-    return render(request, 'base.html')
+    category = Category.objects.all()
+
+    context = {
+        'category': category
+    }
+    return render(request, 'base.html', context)
 
 
 
@@ -202,6 +207,10 @@ def Products(request):
         color = Color.objects.all()
         sizes = Product_Size.objects.all()
         brand = Brand.objects.all()
+
+        for products in product:
+            products.discounted_price_value = products.discounted_price()
+            discount_price = products.discounted_price_value
 
         # FILTER WITH CATEGORY
         CategoryID = request.GET.get('categoryID')
@@ -519,4 +528,11 @@ def Order(request):
 
 
 def order_tracking(request):
-    return render(request, 'cart/order_tracking.html')
+    checkout = get_object_or_404(Checkout, user=request.user)
+    tracking = checkout.tracking
+    context = {
+        'checkout': checkout,
+        'tracking': tracking,
+    }
+
+    return render(request, 'cart/order_track.html', context)

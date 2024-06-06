@@ -2476,7 +2476,7 @@ input {
 }
 .cat-toggle-btn-1:hover {
   color: #ffffff;
-  background: #133f32;;
+  background: #0a062e;;
 }
 
 /*----------------------------------------*/
@@ -2532,14 +2532,18 @@ input {
   height: 45px;
   width: 45px;
   line-height: 45px;
-  background: #FF0000;
+  background: #ffffff;
   color: 	#f42a41;
+  border: 2px solid #f42a41;
   border-radius: 50%;
 }
 .offcanvas__close-btn:hover {
-  background: #222;
+  background: #f42a41;
+  color: white;
+  border: 2px solid white;
 }
 .offcanvas__logo {
+  width: 80%;
   padding-bottom: 20px;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -7279,8 +7283,26 @@ p.checkout-coupon input[type=text]::placeholder {
 
 /* ORDER TRACKING */
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap');
+
+:root {
+  --melorraOrange: #FF0000;
+  --blueShade1: #2c3e50;
+  --blueShade2: #34495e;
+  --boxShadowLight1: 0 2rem 5rem rgba(0,0,0,0.06);
+  --boxShadowDark1: 0 2rem 6rem rgba(0,0,0,0.3);
+}
+
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
 figure {
   display: flex;
+  margin-top: 10rem  ;
 }
 
 figure img {
@@ -7298,7 +7320,7 @@ figure figcaption {
 }
 
 figure figcaption h4 {
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -7357,7 +7379,7 @@ figure figcaption h2 {
 }
 
 .order-track-text-stat {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: 3px;
 }
@@ -7370,6 +7392,8 @@ figure figcaption h2 {
 .order-track {
   transition: all .3s height 0.3s;
   transform-origin: top center;
+  
+  margin-bottom: 10rem  ;
 }
 
 

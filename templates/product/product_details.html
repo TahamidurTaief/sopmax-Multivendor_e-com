@@ -37,7 +37,7 @@
                         {% for i in product.product_image_set.all %}
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="thumb{{i.id}}-tab" data-bs-toggle="tab" data-bs-target="#thumb{{i.id}}" type="button" role="tab" aria-controls="thumb{{i.id}}" aria-selected="true">
-                              <img src="{{i.image}}" alt="" style="width:auto; height:55px">
+                              <img src="{{i.image.url}}" alt="" style="width:auto; height:55px">
                           </button>
                         </li>
                         {% endfor %}
@@ -48,14 +48,14 @@
 
                             <div class="tab-pane fade show active ml-5" id="thumb{{i.id}}" role="tabpanel" aria-labelledby="thumb{{i.id}}-tab">
                                 <div class="product__details-nav-thumb  w-img">
-                                    <img src="{{product.product_image_set.first.image}}" alt="">
+                                    <img src="{{product.product_image_set.first.image.url}}" alt="">
                                 </div>
                             </div>
 
                             {% for i in product.product_image_set.all %}
                             <div class="tab-pane fade show ml-5" id="thumb{{i.id}}" role="tabpanel" aria-labelledby="thumb{{i.id}}-tab">
                                 <div class="product__details-nav-thumb w-img">
-                                    <img src="{{i.image}}" alt="">
+                                    <img src="{{i.image.url}}" alt="">
                                 </div>
                             </div>
                             {% endfor %}

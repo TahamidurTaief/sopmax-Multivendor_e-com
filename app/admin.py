@@ -35,6 +35,7 @@ admin.site.register(Product_Size)
 admin.site.register(Brand)
 admin.site.register(Checkout)
 admin.site.register(PreOrder)
+admin.site.register(OrderTracking)
 
 
 @admin.register(CuponCode)

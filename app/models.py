@@ -53,7 +53,7 @@ class Main_Category(models.Model):
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    main_Category= models.ForeignKey(Main_Category, on_delete=models.CASCADE)
+    main_Category= models.ForeignKey(Main_Category,related_name='categories', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, default="", null="", blank="") 
     image = models.ImageField(upload_to='category_images', null=True, blank=True)
 
@@ -95,7 +95,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True, default="")
     tags = models.CharField(max_length=100, default="", null="", blank="")
-    featured_image = models.CharField(max_length=200, default="", null="", blank="")
+    featured_image =models.ImageField(upload_to='product_images', null=True, blank=True)
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
 
     def discounted_price(self):
@@ -158,7 +158,7 @@ class CuponCode(models.Model):
 class Product_Image(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.CharField(max_length=200, default="", null="", blank="")
+    image = models.ImageField(upload_to='product_images', null=True, blank=True)
 
     def __str__(self):
         return self.product.name 
@@ -232,7 +232,7 @@ class Checkout(models.Model):
 
 
 class PreOrder(models.Model):
-    user = models.CharField(max_length=100, default='', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product_name = models.TextField(default='', null=True, blank=True)
     first_name = models.CharField(max_length=100, default='', null=True, blank=True)
     last_name = models.CharField(max_length=100, default='', null=True, blank=True)
@@ -255,4 +255,17 @@ class PreOrder(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Checkout for {self.first_name} {self.last_name}"
+        return f"Checkout for {self.tranjection_id}"
+    
+
+
+class OrderTracking(models.Model):
+    checkout = models.OneToOneField(Checkout, on_delete=models.CASCADE, related_name='tracking')
+    order_received = models.DateField()
+    order_processed = models.DateField()
+    manufacturing_in_progress = models.DateField()
+    order_dispatched = models.DateField()
+    order_delivered = models.DateField()
+
+    def __str__(self):
+        return f"Tracking for {self.checkout.product_name}"

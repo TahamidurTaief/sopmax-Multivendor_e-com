@@ -1,3 +1,5 @@
+from .models import Checkout, Main_Category, Sub_Category, Category
+
 
 def cart_item_count(request):
     cart = request.session.get('cart', {})
@@ -7,8 +9,15 @@ def cart_item_count(request):
     }
 
 
+def order_count(request):
+    if request.user.is_authenticated:
+        total_orders = Checkout.objects.filter(user=request.user).count()
+    else:
+        total_orders = 0
+    
+    return {'total_orders': total_orders}
 
-from .models import Main_Category, Sub_Category, Category
+
 
 def categories(request):
     main_cat = Main_Category.objects.all()

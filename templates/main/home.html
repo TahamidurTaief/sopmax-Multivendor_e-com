@@ -101,7 +101,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="banner__item p-relative w-img mb-30">
                         <div class="banner__img">
-                            <a href="product-details.html"><img src="{{i.image.url}}" alt=""></a>
+                            <a href="{% url 'product' %}"><img src="{{i.image.url}}" alt=""></a>
                         </div>
                         <div class="banner__content">
                             <h6>{{i.discount_deal}} <br> {{i.quote}}</h6>
@@ -145,7 +145,7 @@
                                 <div class="product__thumb fix">
                                     <div class="product-image w-img">
                                         <a href="{{i.get_absolute_url}}">
-                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; width: auto;">
+                                            <img src="{{i.featured_image.url}}" alt="product" style="height:180px; width: auto;">
                                         </a>
                                     </div>
                                     <div class="product__offer">
@@ -243,7 +243,7 @@
                                 <div class="product__thumb fix">
                                     <div class="product-image w-img">
                                         <a href="{{i.get_absolute_url}}">
-                                            <img src="{{i.featured_image}}" alt="product" style="height:180px; width: auto;">
+                                            <img src="{{i.featured_image.url}}" alt="product" style="height:180px; width: auto;">
                                         </a>
                                     </div>
                                     <div class="product__offer">
@@ -341,7 +341,7 @@
                             <div class="product__thumb fix">
                                 <div class="product-image w-img">
                                     <a href="{{i.get_absolute_url}}">
-                                        <img src="{{i.featured_image}}" alt="product" style="height:180px; width: auto;">
+                                        <img src="{{i.featured_image.url}}" alt="product" style="height:180px; width: auto;">
                                     </a>
                                 </div>
                                 <div class="product__offer">
@@ -430,11 +430,11 @@
                 <div class="col-xl-6 col-lg-6 col-md-12">
                     <div class="banner__item p-relative w-img mb-30">
                         <div class="banner__img">
-                            <a href="product-details.html"><img src="{% static 'assets/img/banner/banner-4.jpg' %}" alt=""></a>
+                            <a href="{% url 'product' %}"><img src="{% static 'assets/img/banner/banner-4.jpg' %}" alt=""></a>
                         </div>
                         <div class="banner__content">
                             <span>Bestseller Products</span>
-                            <h6><a href="product-details.html">PC & Docking Station</a></h6>
+                            <h6><a href="{% url 'product' %}">PC & Docking Station</a></h6>
                             <p>Discount 20% Off, Top Quality Products</p>
                         </div>
                     </div>
@@ -442,11 +442,11 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 mt-5">
                     <div class="banner__item p-relative mb-30 w-img">
                         <div class="banner__img">
-                            <a href="product-details.html"><img src="{% static 'assets/img/banner/banner-5.jpg' %}" alt=""></a>
+                            <a href="{% url 'product' %}"><img src="{% static 'assets/img/banner/banner-5.jpg' %}" alt=""></a>
                         </div>
                         <div class="banner__content">
                             <span>Featured Products</span>
-                            <h6><a href="product-details.html">Accessories iPhone</a></h6>
+                            <h6><a href="{% url 'product' %}">Accessories iPhone</a></h6>
                             <p>Free Shipping All Order Over $99</p>
                         </div>
                     </div>
@@ -499,8 +499,8 @@
                                         <div class="product__item swiper-slide">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="product-details.html">
-                                                        <img src="{{i.featured_image}}" alt="sopmax" style="height:220px; width:auto;">
+                                                    <a href="{% url 'product' %}">
+                                                        <img src="{{i.featured_image.url}}" alt="sopmax" style="height:220px; width:auto;">
                                                     </a>
                                                 </div>
                                                 <div class="product__offer">
@@ -523,7 +523,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__content">
-                                                <h6><a href="product-details.html">{{i.name}}</a></h6>
+                                                <h6><a href="{% url 'product' %}">{{i.name}}</a></h6>
                                                 
                                                 <div class="price">
                                                     <span>&#2547; {{i.price}}</span>
@@ -560,8 +560,8 @@
                                         <div class="product__item swiper-slide">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="product-details.html">
-                                                        <img src="{{i.featured_image}}" alt="sopmax" style="height:220px; width:auto;">
+                                                    <a href="{% url 'product' %}">
+                                                        <img src="{{i.featured_image.url}}" alt="sopmax" style="height:220px; width:auto;">
                                                     </a>
                                                 </div>
                                                 <div class="product__offer">
@@ -584,7 +584,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__content">
-                                                <h6><a href="product-details.html">{{i.name}}</a></h6>
+                                                <h6><a href="{% url 'product' %}">{{i.name}}</a></h6>
                                                 
                                                 <div class="price">
                                                     <span>&#2547; {{i.price}}</span>
@@ -622,8 +622,8 @@
                                             <div class="product__item swiper-slide">
                                                 <div class="product__thumb fix">
                                                     <div class="product-image w-img">
-                                                        <a href="product-details.html">
-                                                            <img src="{{i.featured_image}}" alt="sopmax" style="height:220px; width:auto;">
+                                                        <a href="{% url 'product' %}">
+                                                            <img src="{{i.featured_image.url}}" alt="sopmax" style="height:220px; width:auto;">
                                                         </a>
                                                     </div>
                                                     <div class="product__offer">
@@ -646,7 +646,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product__content">
-                                                    <h6><a href="product-details.html">{{i.name}}</a></h6>
+                                                    <h6><a href="{% url 'product' %}">{{i.name}}</a></h6>
                                                     
                                                     <div class="price">
                                                         <span>&#2547; {{i.price}}</span>
@@ -685,8 +685,8 @@
                                             <div class="product__item swiper-slide">
                                                 <div class="product__thumb fix">
                                                     <div class="product-image w-img">
-                                                        <a href="product-details.html">
-                                                            <img src="{{i.featured_image}}" alt="sopmax" style="height:220px; width:auto;">
+                                                        <a href="{% url 'product' %}">
+                                                            <img src="{{i.featured_image.url}}" alt="sopmax" style="height:220px; width:auto;">
                                                         </a>
                                                     </div>
                                                     <div class="product__offer">
@@ -709,7 +709,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product__content">
-                                                    <h6><a href="product-details.html">{{i.name}}</a></h6>
+                                                    <h6><a href="{% url 'product' %}">{{i.name}}</a></h6>
                                                     
                                                     <div class="price">
                                                         <span>&#2547; {{i.price}}</span>
@@ -743,8 +743,8 @@
                                         <div class="product__item swiper-slide">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="product-details.html">
-                                                        <img src="{{i.featured_image}}" alt="sopmax" style="height:220px; width:auto;">
+                                                    <a href="{% url 'product' %}">
+                                                        <img src="{{i.featured_image.url}}" alt="sopmax" style="height:220px; width:auto;">
                                                     </a>
                                                 </div>
                                                 <div class="product__offer">
@@ -767,7 +767,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__content">
-                                                <h6><a href="product-details.html">{{i.name}}</a></h6>
+                                                <h6><a href="{% url 'product' %}">{{i.name}}</a></h6>
                                                 
                                                 <div class="price">
                                                     <span>&#2547; {{i.price}}</span>
@@ -824,7 +824,7 @@
                             <div class="col-md-6">
                                 <div class="features-thum">
                                     <div class="features-product-image w-img">
-                                        <a href="{{top_skin_care.get_absolute_url}}"><img src="{{top_skin_care.featured_image}}" alt=""></a>
+                                        <a href="{{top_skin_care.get_absolute_url}}"><img src="{{top_skin_care.featured_image.url}}" alt=""></a>
                                     </div>
                                     <div class="product__offer">
                                         <span class="discount">-{{top_skin_care.discount}}%</span>
@@ -878,7 +878,7 @@
                                         <div class="features-thum">
 
                                             <div class="features-product-image w-img">
-                                                <a href="{{top_bag.get_absolute_url}}"><img src="{{top_bag.featured_image}}" alt="sopmax-bag"></a>
+                                                <a href="{{top_bag.get_absolute_url}}"><img src="{{top_bag.featured_image.url}}" alt="sopmax-bag"></a>
                                             </div>
                                             <div class="product__offer">
                                                 <span class="discount">-{{top_bag.discount}}%</span>
@@ -908,7 +908,7 @@
                                     <div class="col-6">
                                         <div class="features-thum">
                                             <div class="features-product-image w-img">
-                                                <a href="{{top_beauty_tools.get_absolute_url}}"><img src="{{top_beauty_tools.featured_image}}" alt="sopmax-{{top_beauty_tools.name}}"></a>
+                                                <a href="{{top_beauty_tools.get_absolute_url}}"><img src="{{top_beauty_tools.featured_image.url}}" alt="sopmax-{{top_beauty_tools.name}}"></a>
                                             </div>
                                             <div class="product__offer">
                                                 <span class="discount">-{{top_beauty_tools.discount}}%</span>
@@ -940,7 +940,7 @@
                                     <div class="col-6">
                                         <div class="features-thum">
                                             <div class="features-product-image w-img">
-                                                <a href="{{top_shoes.get_absolute_url}}"><img src="{{top_shoes.featured_image}}" alt="sopmax-{{top_shoes.name}}"></a>
+                                                <a href="{{top_shoes.get_absolute_url}}"><img src="{{top_shoes.featured_image.url}}" alt="sopmax-{{top_shoes.name}}"></a>
                                             </div>
                                             <div class="product__offer">
                                                 <span class="discount">-{{top_shoes.discount}}%</span>
@@ -1052,7 +1052,7 @@
                         <div class="col-xl-4 col-lg-4 col-md-6">
                             <div class="banner__item p-relative w-img mb-30">
                                 <div class="banner__img">
-                                    <a href="product-details.html"><img src="{{i.image.url}}" alt=""></a>
+                                    <a href="{% url 'product' %}"><img src="{{i.image.url}}" alt=""></a>
                                 </div>
                                 <div class="banner__content">
                                     <h6>{{i.discount_deal}} <br> {{i.quote}}</h6>
@@ -1066,7 +1066,7 @@
                         <div class="col-md-12">
                             <div class="banner__item p-relative mb-30 w-img">
                                 <div class="banner__img">
-                                    <a href="{% url 'product' %}"><img src="{{i.image}}" alt=""></a>
+                                    <a href="{% url 'product' %}"><img src="{{i.image.url}}" alt=""></a>
                                 </div>
                                 <div class="banner__content banner__content-sd text-center">
                                     <h6>{{i.discount_deal}}</br>{{i.quote}}</h6>
@@ -1077,10 +1077,10 @@
                         <div class="col-md-12">
                             <div class="banner__item p-relative w-img mb-30">
                                 <div class="banner__img">
-                                    <a href="product-details.html"><img src="{% static 'assets/img/banner/banner-8.jpg' %}" alt=""></a>
+                                    <a href="{% url 'product' %}"><img src="{% static 'assets/img/banner/banner-8.jpg' %}" alt=""></a>
                                 </div>
                                 <div class="banner__content">
-                                    <h6><a href="product-details.html">Hot Products <br> Laptop Ultra 4K 16”</a></h6>
+                                    <h6><a href="{% url 'product' %}">Hot Products <br> Laptop Ultra 4K 16”</a></h6>
                                     <p>Discount  20% On Products</p>
                                 </div>
                             </div>
@@ -1197,14 +1197,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1218,7 +1218,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1229,7 +1229,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1309,14 +1309,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1330,7 +1330,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1341,7 +1341,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1421,14 +1421,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1442,7 +1442,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1453,7 +1453,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1532,14 +1532,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1553,7 +1553,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1564,7 +1564,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1643,14 +1643,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1664,7 +1664,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1675,7 +1675,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1754,14 +1754,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1775,7 +1775,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1786,7 +1786,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1866,14 +1866,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1887,7 +1887,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -1898,7 +1898,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>
@@ -1977,14 +1977,14 @@
 
                                     <div class="tab-pane fade show active" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{i.product_image_set.first.image}}" alt="Product">
+                                            <img src="{{i.product_image_set.first.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     
                                     {% for image in i.product_image_set.all %}
                                     <div class="tab-pane fade show" id="nav{{image.id}}" role="tabpanel" aria-labelledby="nav{{image.id}}-tab">
                                         <div class="product__modal-img w-img">
-                                            <img src="{{image.image}}" alt="Product">
+                                            <img src="{{image.image.url}}" alt="Product">
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -1998,7 +1998,7 @@
                                     {% for image in i.product_image_set.all %}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="nav{{image.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{image.id}}" type="button" role="tab" aria-controls="nav{{image.id}}" aria-selected="true">
-                                            <img src="{{image.image}}" alt="" style="width:85px; height:85px;">
+                                            <img src="{{image.image.url}}" alt="" style="width:85px; height:85px;">
                                         </button>
                                     </li>
                                     {% endfor %}
@@ -2009,7 +2009,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">{{i.name}}</a></h4>
+                                <h4><a href="{% url 'product' %}">{{i.name}}</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>

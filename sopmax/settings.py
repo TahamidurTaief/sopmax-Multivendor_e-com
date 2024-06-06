@@ -65,6 +65,7 @@ TEMPLATES = [
                 'cart.context_processor.cart_total_amount',
                 'app.context_processors.cart_item_count',
                 'app.context_processors.categories',
+                'app.context_processors.order_count',
             ],
         },
     },
@@ -197,6 +198,12 @@ EMAIL_HOST_PASSWORD = '#TahamidurTaief59000868@'
 
 
 
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = '/home/sopmlxgl/sopmax.com/static/'
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = '/home/sopmlxgl/sopmax.com/media/'
 
 
 # Static files (CSS, JavaScript, Images)

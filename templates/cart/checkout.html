@@ -77,7 +77,7 @@
     <!-- checkout-area-start -->
     <section class="checkout-area pb-85 pt-13">
         <div class="container">
-            <form action="{% url 'order' %}" method="post">
+            <form action="{% url 'savecheckout' %}" method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-6">
@@ -170,7 +170,7 @@
                                     <div class="checkout-form-list">
                                         
                                         <label>Product Info <span class="required">*</span></label>
-                                        <input type="text" placeholder="Paste here your copied info."  name="product_name" required >
+                                        <textarea  class="form-control" placeholder="Paste here your copied info."  name="product_name" required ></textarea>
                                     </div>
                                 </div>
 
@@ -191,8 +191,9 @@
                                 <table>
                                     <thead>
                                         {% for key, value in request.session.cart.items %}
-                                        <tr>                                           
-                                                <b style="color:black; font-weight:400;">@ </b>{{ value.name }} | {{ value.price }} | {{ value.quantity }}<br>
+                                        <tr>      
+                                            <span style="color:black; font-size:0.6rem;">Copy this prodcut info.</span><br>                      
+                                                <b style="color:black; font-weight:400;">@ </b>{{ value.name }} | &#x9F3; {{ value.price }} | Quantity: {{ value.quantity }}<br>
                                             {% comment %} <td>&#2547; {{ value.price }}</td> {% endcomment %}
                                         </tr>
                                         {% endfor %}

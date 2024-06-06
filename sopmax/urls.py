@@ -52,7 +52,7 @@ urlpatterns = [
     path('preorder/<uuid:id>', views.preOrder, name='preorder'),
     path('preorder/save', views.SavePreOrder, name='savepreorder'),
     path('order/', views.Order, name='order'),
-    # path('order/tracking', views.OrderDetail, name='orderdetail'),
+    path('order/tracking', views.order_tracking, name='order_tracking'),
 
     
 
