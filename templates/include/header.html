@@ -133,12 +133,12 @@
                                               <div class="cart__item d-flex justify-content-between align-items-center">
                                                 <div class="cart__inner d-flex">
                                                   <div class="cart__thumb">
-                                                    <a href="product-details.html">
+                                                    <a href="{% url 'product' %}">
                                                       <img src="{{value.image}}" alt="sopmax" style="height:50px; width:auto;">
                                                     </a>
                                                   </div>
                                                   <div class="cart__details">
-                                                    <h6><a href="product-details.html"> {{value.name}}  </a></h6>
+                                                    <h6><a href="{% url 'product' %}"> {{value.name}}  </a></h6>
                                                     <div class="cart__price">
                                                       <span>&#2547; {{value.price}}</span>
                                                     </div>
@@ -177,20 +177,40 @@
                             <div class="cat__menu">
                                 <nav id="mobile-menu" style="display: block;">
                                     <ul>
-                                        <li><a href="{% url 'home' %}">Home</a></li>
+                                        {% for main_cat in main_cat %}
+                                            <li>
+                                                <a href="#">{{ main_cat.name }} <i class="far fa-angle-down"></i></a>
+                                                <ul class="mega-menu">
+                                                    {% for cat in main_cat.categories.all %}
+                                                        <li>
+                                                            <a href="/product/?categoryID={{ cat.id }}">{{ cat.name }}</a>
+                                                            <ul class="mega-item">
+                                                                {% for subcat in cat.sub_categories.all %}
+                                                                    <li>
+                                                                        <a href="/product/?categoryID={{ subcat.id }}">{{ subcat.name }}</a>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        {% endfor %}
+
+
+
+                                                
+                                                </li>
+                                                
+                                                <li><a href="{% url 'home' %}">Home</a></li>
                                         {% comment %} <li><a href="{% url 'about-us' %}">About Us</a></li>
                                         <li><a href="{% url 'contact-us' %}">Contact Us</a></li> {% endcomment %}
                                         <li><a href="{% url 'product' %}">Product</a></li>
                                         <li><a href="{% url 'cart_detail' %}">My Cart</a></li>
                                         <li><a href="{% url 'checkout' %}">Checkout</a></li>
-                                        <li><a href="{% url 'order' %}">Order</a></li>
-                                        <li><a href="{% url 'order_tracking' %}">Order Tracking</a></li>
-                                    <hr>
-
-                                        {% comment %} {% for i in category %}
-                                        <li><a href="#">{{ i.name }} <i class="far fa-angle-down"></i></a>
-                                       
-                                        {% endfor %} {% endcomment %}
+                                            </ul>
+                                        </li>
+                                        {% comment %} {% endfor %} {% endcomment %}
 
                                         {% comment %} <li><a href="shop.html">Health &amp; Beauty</a></li> {% endcomment %}
                                     </ul>

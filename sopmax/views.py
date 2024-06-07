@@ -9,6 +9,11 @@ from django.db.models import Max, Min, Sum
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from cart.cart import Cart #type: ignore
+from django.contrib.auth.models import AnonymousUser
+
+
+
+
 
 # Create your views here.
 def base(request):
@@ -156,7 +161,7 @@ def Register(request):
             return redirect('login')
     except Exception as e:
         # Handle the exception here
-        return redirect('error404')
+        return redirect('404')
     
 
 def Login(request):
@@ -174,7 +179,7 @@ def Login(request):
                 return redirect('login')
     except Exception as e:
         # Handle the exception here
-        return redirect('error404')
+        return redirect('404')
     # return render(request, 'account/my-account.html')
 
 
@@ -184,7 +189,7 @@ def custom_logout(request):
             logout(request)
     except Exception as e:
         # Handle the exception here
-        return redirect('404')  # Replace 'error404' with your desired redirect URL
+        return redirect('404')  # Replace '404' with your desired redirect URL
     return redirect('home')  # Replace 'home' with your desired redirect URL
 
 
@@ -252,7 +257,7 @@ def Products(request):
         return render(request, 'product/product.html', context)
     except Exception as e:
         # Handle the exception here
-        return redirect('404')  # Replace 'error404' with your desired redirect URL
+        return redirect('404')  # Replace '404' with your desired redirect URL
 
 
 
@@ -289,7 +294,16 @@ def cart_add(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
     cart.add(product=product)
-    return redirect("home")
+    
+    # Get the previous URL from the HTTP referer header
+    previous_url = request.META.get('HTTP_REFERER')
+    
+    if previous_url:
+        return redirect(previous_url)
+    else:
+        return redirect('home')  # Fallback if no referer is found
+    
+
 
 
 @login_required(login_url="/acounts/login")
@@ -437,11 +451,12 @@ def checkoutOrder(request):
                 order_total=order_total,
             )
             orderCheckout.save()
+            cart_clear(request)
             # messages.success(request, 'Order placed successfully.')
         return redirect('home')
     except Exception as e:
         # Handle the exception here
-        return redirect('error404')  # Replace 'error404' with your desired redirect URL
+        return redirect('404')  # Replace '404' with your desired redirect URL
 
 
 def preOrder(request, id):
@@ -510,29 +525,38 @@ def SavePreOrder(request):
 
 
 
-
+@login_required
 def Order(request):
-    try:
-        user = request.user
-        checkout_obj = Checkout.objects.filter(user=user)
+    user = request.user
+    if isinstance(user, AnonymousUser):
+        return redirect('login')  # or any other appropriate action
 
-        context = {
-            'checkout_obj': checkout_obj
-        }
+    checkout_obj = Checkout.objects.filter(user=user)
 
-        return render(request, 'cart/order.html', context)
-    except Exception as e:
+    context = {
+        'checkout_obj': checkout_obj
+    }
+
+    return render(request, 'cart/order.html', context)
+    # except Exception as e:
+    #     return HttpResponse(f'{e}')
+        # print(f"\n {e} \n")
         # Handle the exception here
-        return redirect('error404')  # Replace 'error404' with your desired redirect URL
+        # return redirect('404')  # Replace '404' with your desired redirect URL
     
 
 
+@login_required
 def order_tracking(request):
-    checkout = get_object_or_404(Checkout, user=request.user)
-    tracking = checkout.tracking
+    user = request.user
+    checkouts = Checkout.objects.filter(user=user)
+
+    if not checkouts.exists():
+        # Handle the case when there are no checkouts for the user
+        return redirect('cart_detail')  # Redirect to a default page or show a message
+
     context = {
-        'checkout': checkout,
-        'tracking': tracking,
+        'checkouts': checkouts,
     }
 
     return render(request, 'cart/order_track.html', context)

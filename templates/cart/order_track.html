@@ -1,71 +1,91 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 
 {% block content %}
 <section class="root">
   <div class="container">
-    <figure>
-      <img src="{% static "assets/img/favicon.png" %}" alt="" style="border:none">
-      <figcaption>
-        <h4>{{ checkout.product_name }}</h4>
-        <h6>{{checkout.tranjection_number}}</h6>
-        <h2>&#x9F3; {{ checkout.order_total }}</h2>
-      </figcaption>
-    </figure>
-    <div class="order-track">
-      <div class="order-track-step">
-        <div class="order-track-status">
-          <span class="order-track-status-dot"></span>
-          <span class="order-track-status-line"></span>
+    {% for checkout in checkouts %}
+      <figure>
+        <img src="{% static "assets/img/favicon.png" %}" alt="" style="border:none">
+        <figcaption>
+          <h4>{{ checkout.product_name }}</h4>
+          <h6>{{ checkout.tranjection_number }}</h6>
+          <h2>&#x9F3; {{ checkout.order_total }}</h2>
+        </figcaption>
+      </figure>
+      <div class="order-track">
+        <div class="order-track-step">
+          <div class="order-track-status">
+            <span class="order-track-status-dot"></span>
+            <span class="order-track-status-line"></span>
+          </div>
+          <div class="order-track-text">
+            <p class="order-track-text-stat">Order Received</p>
+            {% if not checkout.tracking.order_received %}
+            <span class="order-track-text-sub">Waiting for process</span>
+            {% else %}
+            <span class="order-track-text-sub">{{ checkout.tracking.order_received }}</span>
+            {% endif %}
+          </div>
         </div>
-        <div class="order-track-text">
-          <p class="order-track-text-stat">Order Received</p>
-          <span class="order-track-text-sub">{{ tracking.order_received }}</span>
+        <div class="order-track-step">
+          <div class="order-track-status">
+            <span class="order-track-status-dot"></span>
+            <span class="order-track-status-line"></span>
+          </div>
+          <div class="order-track-text">
+            <p class="order-track-text-stat">Order Processed</p>
+            {% if not checkout.tracking.order_processed %}
+            <span class="order-track-text-sub">Waiting for process</span>
+            {% else %}
+            <span class="order-track-text-sub">{{ checkout.tracking.order_processed }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="order-track-step">
+          <div class="order-track-status">
+            <span class="order-track-status-dot"></span>
+            <span class="order-track-status-line"></span>
+          </div>
+          <div class="order-track-text">
+            <p class="order-track-text-stat">Manufacturing In Progress</p>
+            {% if not checkout.tracking.manufacturing_in_progress %}
+            <span class="order-track-text-sub">Waiting for process</span>
+            {% else %}
+            <span class="order-track-text-sub">{{ checkout.tracking.manufacturing_in_progress }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="order-track-step">
+          <div class="order-track-status">
+            <span class="order-track-status-dot"></span>
+            <span class="order-track-status-line"></span>
+          </div>
+          <div class="order-track-text">
+            <p class="order-track-text-stat">Order Dispatched</p>
+            {% if not checkout.tracking.order_dispatched %}
+            <span class="order-track-text-sub">Waiting for process</span>
+            {% else %}
+            <span class="order-track-text-sub">{{ checkout.tracking.order_dispatched }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="order-track-step">
+          <div class="order-track-status">
+            <span class="order-track-status-dot"></span>
+            <span class="order-track-status-line"></span>
+          </div>
+          <div class="order-track-text">
+            <p class="order-track-text-stat">Order Delivered</p>
+            {% if not checkout.tracking.order_delivered %}
+            <span class="order-track-text-sub">Waiting for process</span>
+            {% else %}
+            <span class="order-track-text-sub">{{ checkout.tracking.order_delivered }}</span>
+            {% endif %}
+          </div>
         </div>
       </div>
-      <div class="order-track-step">
-        <div class="order-track-status">
-          <span class="order-track-status-dot"></span>
-          <span class="order-track-status-line"></span>
-        </div>
-        <div class="order-track-text">
-          <p class="order-track-text-stat">Order Processed</p>
-          <span class="order-track-text-sub">{{ tracking.order_processed }}</span>
-        </div>
-      </div>
-      <div class="order-track-step">
-        <div class="order-track-status">
-          <span class="order-track-status-dot"></span>
-          <span class="order-track-status-line"></span>
-        </div>
-        <div class="order-track-text">
-          <p class="order-track-text-stat">Manufracturing In Progress</p>
-          <span class="order-track-text-sub">{{ tracking.manufacturing_in_progress }}</span>
-        </div>
-      </div>
-      <div class="order-track-step">
-        <div class="order-track-status">
-          <span class="order-track-status-dot"></span>
-          <span class="order-track-status-line"></span>
-        </div>
-        <div class="order-track-text">
-          <p class="order-track-text-stat">Order Dispatched</p>
-          <span class="order-track-text-sub">{{ tracking.order_dispatched }}</span>
-        </div>
-      </div>
-      <div class="order-track-step">
-        <div class="order-track-status">
-          <span class="order-track-status-dot"></span>
-          <span class="order-track-status-line"></span>
-        </div>
-        <div class="order-track-text">
-          <p class="order-track-text-stat">Order Deliverd</p>
-          <span class="order-track-text-sub">{{ tracking.order_delivered }}</span>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}
